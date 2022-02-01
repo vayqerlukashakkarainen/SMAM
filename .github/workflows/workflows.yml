@@ -8,5 +8,6 @@ jobs:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v1.1.4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           project-name: SMAM
           column-name: Todo
