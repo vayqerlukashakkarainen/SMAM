@@ -1,0 +1,36 @@
+{
+  "name": "io.cordova.hellocordova",
+  "displayName": "Show me a movie",
+  "version": "1.0.0",
+  "description": "An app where you randmoize series or movies to watch next.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Vayqer AB",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@ahovakimyan/cordova-plugin-wkwebviewxhrfix": "^1.0.0",
+    "@globules-io/cordova-plugin-ios-xhr": "^1.2.1",
+    "cordova": "^11.0.0",
+    "cordova-android": "^10.1.1",
+    "cordova-browser": "^6.0.0",
+    "cordova-ios": "^6.2.0",
+    "cordova-plugin-globalization": "^1.11.0"
+  },
+  "cordova": {
+    "platforms": [
+      "ios",
+      "android",
+      "browser"
+    ],
+    "plugins": {
+      "cordova-plugin-globalization": {},
+      "@globules-io/cordova-plugin-ios-xhr": {},
+      "cordova-plugin-wkwebviewxhrfix": {}
+    }
+  }
+}
