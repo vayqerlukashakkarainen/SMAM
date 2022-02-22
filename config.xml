@@ -1,57 +1,263 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Show me a movie</name>
+<widget id="io.vayqer.movieapp" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ShowMeAMovie</name>
     <description>An app where you randmoize series or movies to watch next</description>
     <author email="lukas@vayqer.se" href="https://www.vayqer.se">
         Vayqer AB
     </author>
+
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+
+    <platform name="android">
+        <preference name="AndroidXEnabled" value="true" />
+        <!--
+            ldpi    : 36x36 px
+            mdpi    : 48x48 px
+            hdpi    : 72x72 px
+            xhdpi   : 96x96 px
+            xxhdpi  : 144x144 px
+            xxxhdpi : 192x192 px
+        -->
+        <icon background="www/res/android/background_ldpi.png" density="ldpi" foreground="www/res/android/icon_ldpi.png" />
+        <icon background="www/res/android/background_mdpi.png" density="mdpi" foreground="www/res/android/icon_mdpi.png" />
+        <icon background="www/res/android/background_hdpi.png" density="hdpi" foreground="www/res/android/icon_hdpi.png" />
+        <icon background="www/res/android/background_xhdpi.png" density="xhdpi" foreground="www/res/android/icon_xhdpi.png" />
+        <icon background="www/res/android/background_xxhdpi.png" density="xxhdpi" foreground="www/res/android/icon_xxhdpi.png" />
+        <icon background="www/res/android/background_xxxhdpi.png" density="xxxhdpi" foreground="www/res/android/icon_xxxhdpi.png" />
+    </platform>
+
+     <platform name="ios">
+        <edit-config target="CFBundleLocalizations" file="*-Info.plist" mode="merge">
+            <array>
+                <string>aa</string>
+                <string>ab</string>
+                <string>ae</string>
+                <string>af</string>
+                <string>ak</string>
+                <string>am</string>
+                <string>an</string>
+                <string>ar</string>
+                <string>as</string>
+                <string>av</string>
+                <string>ay</string>
+                <string>az</string>
+                <string>ba</string>
+                <string>be</string>
+                <string>bg</string>
+                <string>bh</string>
+                <string>bi</string>
+                <string>bm</string>
+                <string>bn</string>
+                <string>bo</string>
+                <string>br</string>
+                <string>bs</string>
+                <string>ca</string>
+                <string>ce</string>
+                <string>ch</string>
+                <string>co</string>
+                <string>cr</string>
+                <string>cs</string>
+                <string>cu</string>
+                <string>cv</string>
+                <string>cy</string>
+                <string>da</string>
+                <string>de</string>
+                <string>dv</string>
+                <string>dz</string>
+                <string>ee</string>
+                <string>el</string>
+                <string>en</string>
+                <string>eo</string>
+                <string>es</string>
+                <string>et</string>
+                <string>eu</string>
+                <string>fa</string>
+                <string>ff</string>
+                <string>fi</string>
+                <string>fj</string>
+                <string>fo</string>
+                <string>fr</string>
+                <string>fy</string>
+                <string>ga</string>
+                <string>gd</string>
+                <string>gl</string>
+                <string>gn</string>
+                <string>gu</string>
+                <string>gv</string>
+                <string>ha</string>
+                <string>he</string>
+                <string>hi</string>
+                <string>ho</string>
+                <string>hr</string>
+                <string>ht</string>
+                <string>hu</string>
+                <string>hy</string>
+                <string>hz</string>
+                <string>ia</string>
+                <string>id</string>
+                <string>ie</string>
+                <string>ig</string>
+                <string>ii</string>
+                <string>ik</string>
+                <string>io</string>
+                <string>is</string>
+                <string>it</string>
+                <string>iu</string>
+                <string>ja</string>
+                <string>jv</string>
+                <string>ka</string>
+                <string>kg</string>
+                <string>ki</string>
+                <string>kj</string>
+                <string>kk</string>
+                <string>kl</string>
+                <string>km</string>
+                <string>kn</string>
+                <string>ko</string>
+                <string>kr</string>
+                <string>ks</string>
+                <string>ku</string>
+                <string>kv</string>
+                <string>kw</string>
+                <string>ky</string>
+                <string>la</string>
+                <string>lb</string>
+                <string>lg</string>
+                <string>li</string>
+                <string>ln</string>
+                <string>lo</string>
+                <string>lt</string>
+                <string>lu</string>
+                <string>lv</string>
+                <string>mg</string>
+                <string>mh</string>
+                <string>mi</string>
+                <string>mk</string>
+                <string>ml</string>
+                <string>mn</string>
+                <string>mr</string>
+                <string>ms</string>
+                <string>mt</string>
+                <string>my</string>
+                <string>na</string>
+                <string>nb</string>
+                <string>nd</string>
+                <string>ne</string>
+                <string>ng</string>
+                <string>nl</string>
+                <string>nn</string>
+                <string>no</string>
+                <string>nr</string>
+                <string>nv</string>
+                <string>ny</string>
+                <string>oc</string>
+                <string>oj</string>
+                <string>om</string>
+                <string>or</string>
+                <string>os</string>
+                <string>pa</string>
+                <string>pi</string>
+                <string>pl</string>
+                <string>ps</string>
+                <string>pt</string>
+                <string>qu</string>
+                <string>rm</string>
+                <string>rn</string>
+                <string>ro</string>
+                <string>ru</string>
+                <string>rw</string>
+                <string>sa</string>
+                <string>sc</string>
+                <string>sd</string>
+                <string>se</string>
+                <string>sg</string>
+                <string>si</string>
+                <string>sk</string>
+                <string>sl</string>
+                <string>sm</string>
+                <string>sn</string>
+                <string>so</string>
+                <string>sq</string>
+                <string>sr</string>
+                <string>ss</string>
+                <string>st</string>
+                <string>su</string>
+                <string>sv</string>
+                <string>sw</string>
+                <string>ta</string>
+                <string>te</string>
+                <string>tg</string>
+                <string>th</string>
+                <string>ti</string>
+                <string>tk</string>
+                <string>tl</string>
+                <string>tn</string>
+                <string>to</string>
+                <string>tr</string>
+                <string>ts</string>
+                <string>tt</string>
+                <string>tw</string>
+                <string>ty</string>
+                <string>ug</string>
+                <string>uk</string>
+                <string>ur</string>
+                <string>uz</string>
+                <string>ve</string>
+                <string>vi</string>
+                <string>vo</string>
+                <string>wa</string>
+                <string>wo</string>
+                <string>xh</string>
+                <string>yi</string>
+                <string>yo</string>
+                <string>za</string>
+                <string>zh</string>
+                <string>zu</string>
+            </array>
+        </edit-config>
+        <edit-config target="NSUserTrackingUsageDescription" file="*-Info.plist" mode="merge">
+            <string>My tracking usage description</string>
+        </edit-config>
+        <edit-config target="GADApplicationIdentifier" file="*-Info.plist" mode="merge">
+            <string>ca-app-pub-7908747033760630~6683908401</string>
+        </edit-config>
+        <preference name="deployment-target" value="12.0" />
+        <preference name="SwiftVersion" value="5.3" />
+        <!-- iOS 8.0+ -->
+        <!-- iPhone 6 Plus  -->
+        <icon src="www/res/ios/icon-60@3x.png" width="180" height="180" />
+        <!-- iOS 7.0+ -->
+        <!-- iPhone / iPod Touch  -->
+        <icon src="www/res/ios/icon-60.png" width="60" height="60" />
+        <icon src="www/res/ios/icon-60@2x.png" width="120" height="120" />
+        <!-- iPad -->
+        <icon src="www/res/ios/icon-76.png" width="76" height="76" />
+        <icon src="www/res/ios/icon-76@2x.png" width="152" height="152" />
+        <!-- Spotlight Icon -->
+        <icon src="www/res/ios/icon-40.png" width="40" height="40" />
+        <icon src="www/res/ios/icon-40@2x.png" width="80" height="80" />
+        <!-- iOS 6.1 -->
+        <!-- iPhone / iPod Touch -->
+        <icon src="www/res/ios/icon.png" width="57" height="57" />
+        <icon src="www/res/ios/icon@2x.png" width="114" height="114" />
+        <!-- iPad -->
+        <icon src="www/res/ios/icon-72.png" width="72" height="72" />
+        <icon src="www/res/ios/icon-72@2x.png" width="144" height="144" />
+        <!-- iPad Pro -->
+        <icon src="www/res/ios/icon-167.png" width="167" height="167" />
+        <!-- iPhone Spotlight and Settings Icon -->
+        <icon src="www/res/ios/icon-small.png" width="29" height="29" />
+        <icon src="www/res/ios/icon-small@2x.png" width="58" height="58" />
+        <icon src="www/res/ios/icon-small@3x.png" width="87" height="87" />
+        <!-- iPad Spotlight and Settings Icon -->
+        <icon src="www/res/ios/icon-50.png" width="50" height="50" />
+        <icon src="www/res/ios/icon-50@2x.png" width="100" height="100" />
+        <!-- iTunes Marketing Image -->
+        <icon src="www/res/ios/icon-1024.png" width="1024" height="1024" />
+    </platform>
+
+    <preference name="SuppressesLongPressGesture" value="true" /> 
+    <preference name="Fullscreen" value="true" /> 
 </widget>
-
-<platform name="android">
-  <icon background="res/icon/android/ldpi-background.png" density="ldpi" foreground="res/icon/android/ldpi-foreground.png" />
-  <icon background="res/icon/android/mdpi-background.png" density="mdpi" foreground="res/icon/android/mdpi-foreground.png" />
-  <icon background="res/icon/android/hdpi-background.png" density="hdpi" foreground="res/icon/android/hdpi-foreground.png" />
-  <icon background="res/icon/android/xhdpi-background.png" density="xhdpi" foreground="res/icon/android/xhdpi-foreground.png" />
-  <icon background="res/icon/android/xxhdpi-background.png" density="xxhdpi" foreground="res/icon/android/xxhdpi-foreground.png" />
-  <icon background="res/icon/android/xxxhdpi-background.png" density="xxxhdpi" foreground="res/icon/android/xxxhdpi-foreground.png" />
-</platform>
-
-<platform name="ios">
-    <!-- iOS 8.0+ -->
-    <!-- iPhone 6 Plus  -->
-    <icon src="res/ios/icon-60@3x.png" width="180" height="180" />
-    <!-- iOS 7.0+ -->
-    <!-- iPhone / iPod Touch  -->
-    <icon src="res/ios/icon-60.png" width="60" height="60" />
-    <icon src="res/ios/icon-60@2x.png" width="120" height="120" />
-    <!-- iPad -->
-    <icon src="res/ios/icon-76.png" width="76" height="76" />
-    <icon src="res/ios/icon-76@2x.png" width="152" height="152" />
-    <!-- Spotlight Icon -->
-    <icon src="res/ios/icon-40.png" width="40" height="40" />
-    <icon src="res/ios/icon-40@2x.png" width="80" height="80" />
-    <!-- iOS 6.1 -->
-    <!-- iPhone / iPod Touch -->
-    <icon src="res/ios/icon.png" width="57" height="57" />
-    <icon src="res/ios/icon@2x.png" width="114" height="114" />
-    <!-- iPad -->
-    <icon src="res/ios/icon-72.png" width="72" height="72" />
-    <icon src="res/ios/icon-72@2x.png" width="144" height="144" />
-    <!-- iPad Pro -->
-    <icon src="res/ios/icon-167.png" width="167" height="167" />
-    <!-- iPhone Spotlight and Settings Icon -->
-    <icon src="res/ios/icon-small.png" width="29" height="29" />
-    <icon src="res/ios/icon-small@2x.png" width="58" height="58" />
-    <icon src="res/ios/icon-small@3x.png" width="87" height="87" />
-    <!-- iPad Spotlight and Settings Icon -->
-    <icon src="res/ios/icon-50.png" width="50" height="50" />
-    <icon src="res/ios/icon-50@2x.png" width="100" height="100" />
-    <!-- iPad Pro -->
-    <icon src="res/ios/icon-83.5@2x.png" width="167" height="167" />
-    <!-- iTunes Marketing Image -->
-    <icon src="res/ios/icon-1024.png" width="1024" height="1024" />
-</platform>
-

@@ -1,0 +1,320 @@
+.disco-container {
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	display: none;
+}
+.app.disco .disco-container {
+	display: flex;
+}
+.app .disco-container .movie-info {
+	min-height: 422px;
+	justify-content: start;
+}
+.app .disco-container h2 {
+	font-weight: bold;
+	font-size: 26px;
+	line-height: 1;
+	display: none;
+}
+.app.disco.fsah .disco-container h2 {
+	display: block;
+	-webkit-transform: rotateX(25deg) rotateY(20deg) rotateZ(-3deg);
+	transform: rotateX(25deg) rotateY(20deg) rotateZ(-3deg);
+	font-size: 60px;
+	transition: all 400ms ease;
+	-webkit-transition: all 400ms ease;
+
+	-webkit-animation: disco-light 3s linear, scale-font 500ms linear;
+	-webkit-animation-iteration-count: infinite;
+
+	animation: disco-light 3s linear, scale-font 500ms linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes disco-light {
+	0% {
+		text-shadow: -6px 4px 0px red;
+	}
+	10% {
+		text-shadow: 4px -6px 0px green;
+	}
+	20% {
+		text-shadow: -9px 4px 0px blue;
+	}
+	30% {
+		text-shadow: 4px -6px 0px yellow;
+	}
+	40% {
+		text-shadow: -8px 4px 0px orange;
+	}
+	50% {
+		text-shadow: 4px 5px 0px purple;
+	}
+	60% {
+		text-shadow: -6px 4px 0px brown;
+	}
+	70% {
+		text-shadow: 4px 7px 0px pink;
+	}
+	80% {
+		text-shadow: -9px -4px 0px lime;
+	}
+	90% {
+		text-shadow: 4px -6px 0px cyan;
+	}
+	100% {
+		text-shadow: -9px 4px 0px teal;
+	}
+}
+@-webkit-keyframes disco-light {
+	0% {
+		text-shadow: -6px 4px 0px red;
+	}
+	10% {
+		text-shadow: 4px -6px 0px green;
+	}
+	20% {
+		text-shadow: -9px 4px 0px blue;
+	}
+	30% {
+		text-shadow: 4px -6px 0px yellow;
+	}
+	40% {
+		text-shadow: -8px 4px 0px orange;
+	}
+	50% {
+		text-shadow: 4px 5px 0px purple;
+	}
+	60% {
+		text-shadow: -6px 4px 0px brown;
+	}
+	70% {
+		text-shadow: 4px 7px 0px pink;
+	}
+	80% {
+		text-shadow: -9px -4px 0px lime;
+	}
+	90% {
+		text-shadow: 4px -6px 0px cyan;
+	}
+	100% {
+		text-shadow: -9px 4px 0px teal;
+	}
+}
+
+@keyframes scale {
+	0% {
+		transform: scale(1);
+	}
+	10% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+@-webkit-keyframes scale {
+	0% {
+		-webkit-transform: scale(1);
+	}
+	10% {
+		-webkit-transform: scale(1.2);
+	}
+	100% {
+		-webkit-transform: scale(1);
+	}
+}
+
+@keyframes scale-font {
+	0% {
+		font-size: 40px;
+	}
+	10% {
+		font-size: 50px;
+	}
+	100% {
+		font-size: 40px;
+	}
+}
+@-webkit-keyframes scale-font {
+	0% {
+		font-size: 40px;
+	}
+	10% {
+		font-size: 50px;
+	}
+	100% {
+		font-size: 40px;
+	}
+}
+
+.app.fsah .disco-container .movie-info > img {
+	animation: scale 500ms linear, disco-light 3s linear;
+	animation-iteration-count: infinite;
+	-webkit-animation: scale 500ms linear, disco-light 3s linear;
+	-webkit-animation-iteration-count: infinite;
+}
+.app .disco-lights {
+	opacity: 0;
+}
+.app.fsah .disco-lights {
+	position: absolute;
+	opacity: 1;
+	bottom: 0;
+}
+.app .disco-lights > div {
+	position: absolute;
+	bottom: 0;
+	width: 32px;
+	height: 150vh;
+	background-color: white;
+	opacity: 0.4;
+	transform-origin: 50% 100%;
+	animation-iteration-count: infinite;
+	animation-duration: 8s;
+	animation-timing-function: ease;
+	-webkit-transform-origin: 50% 100%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-duration: 8s;
+	-webkit-animation-timing-function: ease;
+}
+.app .disco-lights > div:nth-child(1) {
+	background-color: red;
+	animation-name: lights;
+	-webkit-animation-name: lights;
+	box-shadow: 0px 0px 48px 20px red;
+}
+.app .disco-lights > div:nth-child(2) {
+	background-color: blue;
+	animation-name: lights2;
+	-webkit-animation-name: lights2;
+	box-shadow: 0px 0px 48px 20px blue;
+}
+.app .disco-lights > div:nth-child(3) {
+	background-color: green;
+	animation-name: lights3;
+	-webkit-animation-name: lights3;
+	box-shadow: 0px 0px 48px 20px green;
+}
+.app .disco-lights > div:nth-child(4) {
+	background-color: yellow;
+	animation-name: lights;
+	animation-delay: 2s;
+	-webkit-animation-name: lights;
+	-webkit-animation-delay: 2s;
+	box-shadow: 0px 0px 48px 20px yellow;
+}
+.app .disco-lights > div:nth-child(5) {
+	background-color: purple;
+	animation-name: lights2;
+	animation-delay: 2s;
+	-webkit-animation-name: lights2;
+	-webkit-animation-delay: 2s;
+	box-shadow: 0px 0px 48px 20px purple;
+}
+.app .disco-lights > div:nth-child(6) {
+	background-color: white;
+	animation-name: lights3;
+	animation-delay: 2s;
+	-webkit-animation-name: lights3;
+	-webkit-animation-delay: 2s;
+	box-shadow: 0px 0px 48px 20px white;
+}
+.app .disco-lights > div:nth-child(7) {
+	background-color: red;
+	animation-name: lights;
+	animation-delay: 4s;
+	box-shadow: 0px 0px 48px 20px red;
+}
+.app .disco-lights > div:nth-child(8) {
+	background-color: blue;
+	animation-name: lights2;
+	animation-delay: 4s;
+	-webkit-animation-name: lights2;
+	-webkit-animation-delay: 4s;
+	box-shadow: 0px 0px 48px 20px blue;
+}
+.app .disco-lights > div:nth-child(9) {
+	background-color: white;
+	animation-name: lights3;
+	animation-delay: 4s;
+	-webkit-animation-name: lights3;
+	-webkit-animation-delay: 4s;
+	box-shadow: 0px 0px 48px 20px white;
+}
+
+@keyframes lights {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(45deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+@-webkit-keyframes lights {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	50% {
+		-webkit-transform: rotate(45deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+	}
+}
+
+@keyframes lights2 {
+	0% {
+		transform: rotate(10deg);
+	}
+	50% {
+		transform: rotate(-45deg);
+	}
+	70% {
+		transform: rotate(50deg);
+	}
+	100% {
+		transform: rotate(10deg);
+	}
+}
+@-webkit-keyframes lights2 {
+	0% {
+		-webkit-transform: rotate(10deg);
+	}
+	50% {
+		-webkit-transform: rotate(-45deg);
+	}
+	70% {
+		-webkit-transform: rotate(50deg);
+	}
+	100% {
+		-webkit-transform: rotate(10deg);
+	}
+}
+
+@keyframes lights3 {
+	0% {
+		transform: rotate(30deg);
+	}
+	50% {
+		transform: rotate(-45deg);
+	}
+	100% {
+		transform: rotate(30deg);
+	}
+}
+@-webkit-keyframes lights3 {
+	0% {
+		-webkit-transform: rotate(30deg);
+	}
+	50% {
+		-webkit-transform: rotate(-45deg);
+	}
+	100% {
+		-webkit-transform: rotate(30deg);
+	}
+}

@@ -18,9 +18,9 @@
     under the License.
 -->
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <!--
+	<head>
+		<meta charset="utf-8" />
+		<!--
         Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
             https://cordova.apache.org/docs/en/latest/
         Some notes:
@@ -28,208 +28,340 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="script-src 'self'; default-src http://api.themoviedb.org 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src https://www.google.com/ https://www.themoviedb.org https://image.tmdb.org 'self' data: content:;"
-    />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta
-      name="viewport"
-      content="initial-scale=1, width=device-width, viewport-fit=cover, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta name="color-scheme" content="light dark" />
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="styl" href="css/util.scss" />
-    <link rel="stylesheet" href="css/bootstrap.min.css"
-     />
-    <link rel="stylesheet" href="css/nouislider.css" />
-    <script src="js/nouislider.js"></script>
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="script-src 'self'; default-src http://api.themoviedb.org 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src https://www.google.com/ https://www.themoviedb.org https://image.tmdb.org 'self' data: content:;" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta
+			name="viewport"
+			content="initial-scale=1, width=device-width, viewport-fit=cover, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="color-scheme" content="light dark" />
+		<link rel="stylesheet" href="css/popcorns.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/disco.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/nouislider.css" />
 
-    <title>Movie App</title>
-  </head>
-  <body>
-    <div class="app">
-      <div id="toggle_overlay" class="icon filter">
-        <div class="menu-icon">
-          <input class="menu-icon__cheeckbox" type="checkbox" />
-          <div>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-      <div class="poster-scroll loading">
-        <div class="intro">
-          <div>
-            <h1>Welcome to<br>Show me a movie</h1>
-            <p>
-              Show me a movie 
-              makes searching for a good movie and series easy and fun. 
-              No more disappointment by the range or rating. 
-              Stop scrolling and get started with the filtering tool.
-            </p>
-          </div>
-        </div>
-        <ul>
-        </ul>
-      </div>
-      <div class="main-container">
-        <div class="movie-container hideable hide">
-          <div class="banner">
-            <img id="tmdb_banner" src="img/banner.jpg" />
-            <div class="overlay"></div>
-          </div>
-          <div class="movie-grid-container">
-            <div class="top-filler"></div>
-            <div class="movie-info">
-              <img id="tmdb_poster" src="img/poster_template.jpg" />
-              <h2 id="tmdb_title">JAWS! Is a movie with fine fish</h2>
-              <ul class="horizontal-list metadata-list" id="tmdb_metadata">
-                <li id="tmdb_rating" class="rating"><span class="rating">7.1</span> ★ <span class="count-container">(<span class="count"></span>)</span></li>
-                <li id="tmdb_year">2021</li>
-                <li id="tmdb_duration">2 Seasons</li>
-              </ul>
-              <ul id="tmdb_categories" class="horizontal-list categories">
-                <li>Action</li>
-                <li>Family</li>
-                <li>Adventure</li>
-              </ul>
-              <p id="tmdb_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique feugiat neque, ac congue metus pretium ac. Quisque placerat urna ut nisi malesuada, et imperdiet lacus tincidunt. Maecenas eget fringilla nisl, commodo venenatis orci. Quisque tellus arcu, gravida in blandit.</p>
-              <div class="provider-container">
-                <div id="stream_from" class="stream-provider-container hideable">
-                  <p class="f-bold color-gray">Stream on</p>
-                  <div class="stream-providers">
-  
-                  </div>
-                </div>
-                <div id="rent_buy_from" class="stream-provider-container hideable">
-                  <p class="f-bold color-gray">Rent/buy from</p>
-                  <div class="stream-providers">
-  
-                  </div>
-                </div>
-                <p id="powered_by_jw" class="color-gray text-center f-size-12 hideable hide">Providers powered by JustWatch</p>
-              </div>
-            </div>
-            <div class="bottom-filler"></div>
-          </div>
-        </div>
-      </div>
-      <div class="bottom-footer">
-        <div class="fetch-btn-container w-100 dark-gradient">
-          <button class="show-me-a-movie-btn fetch-film">
-            <span>SHOW ME A MOVIE</span>
-          </button>
-          <p class="mb-4 pot-results"><span>?</span> potential results</p>
-        </div>
-        <div class="donation-container">
-          <div class="d-flex flex-column">
-            <h1 class="f-size-16 f-bold">Do you like our app?</h1>
-            <p class="f-size-12 m-0">Do you want to support indie-developers?</p>
-          </div>
-          <a href="https://www.buymeacoffee.com" target="_blank">
-            <img src="img/bmac.png" />
-          </a>
-        </div>
-      </div>
+		<script src="js/long-press-event.min.js"></script>
+		<script src="js/nouislider.js"></script>
 
-      <div class="toggle-container">
-        <div class="p-1 pt-5">
-          <h3 class="pb-3">FILTER</h3>
-          <form id="filter_form">
-            <fieldset data-buttons>
-              <label class="cb-container">
-                <input value="1" name="type_cb" type="radio" checked />
-                <span class="checkmark">Movies</span>
-              </label>
+		<title>Show me a movie</title>
 
-              <label class="cb-container">
-                <input value="2" name="type_cb" type="radio" />
-                <span class="checkmark">Series</span>
-              </label>
-            </fieldset>
+		<audio id="pop_sound" src="../www/sounds/pop.mp3"></audio>
+	</head>
+	<body id="particles-js">
+		<div class="app">
+			<div id="toggle_overlay" class="icon safe-area">
+				<div class="menu-icon">
+					<input class="menu-icon__cheeckbox" type="checkbox" />
+					<label>
+						<span></span>
+						<span></span>
+					</label>
+				</div>
+			</div>
+			<div
+				id="popcorn_current_value_holder"
+				class="popcorn-current-value-container safe-area">
+				<span class="popcorn container f-size-12">0</span>
+			</div>
 
-            <fieldset data-slider>
-              <h4>Select a rating range</h4>
-              <div id="highest_rating" class="noUi-gold mx-2"></div>
-            </fieldset>
+			<div class="poster-scroll loading">
+				<div class="intro">
+					<div>
+						<h1>Welcome to<br />Show me a movie</h1>
+						<p>
+							Show me a movie makes searching for a good movie and series easy
+							and fun. No more disappointment by the range or rating. Stop
+							scrolling and get started with the filtering tool.
+						</p>
+					</div>
+				</div>
+				<ul></ul>
+			</div>
+			<div class="main-container">
+				<div class="movie-container hideable hide">
+					<div class="banner">
+						<img id="tmdb_banner" src="img/banner.jpg" />
+						<div class="overlay"></div>
+					</div>
+					<div class="movie-grid-container">
+						<div class="top-filler"></div>
+						<div class="movie-info">
+							<img id="tmdb_poster" src="img/poster_template.jpg" />
+							<h2 id="tmdb_title">JAWS! Is a movie with fine fish</h2>
+							<ul class="horizontal-list metadata-list" id="tmdb_metadata">
+								<li id="tmdb_rating" class="rating">
+									<span class="rating">7.1</span> ★
+								</li>
+								<li id="tmdb_year">2021</li>
+								<li id="tmdb_duration">2 Seasons</li>
+							</ul>
+							<ul id="tmdb_categories" class="horizontal-list categories">
+								<li>Action</li>
+								<li>Family</li>
+								<li>Adventure</li>
+							</ul>
+							<p id="tmdb_description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+								tristique feugiat neque, ac congue metus pretium ac. Quisque
+								placerat urna ut nisi malesuada, et imperdiet lacus tincidunt.
+								Maecenas eget fringilla nisl, commodo venenatis orci. Quisque
+								tellus arcu, gravida in blandit.
+							</p>
+							<div class="provider-container">
+								<div
+									id="stream_from"
+									class="stream-provider-container hideable">
+									<p class="f-bold color-gray">Stream on</p>
+									<div class="stream-providers"></div>
+								</div>
+								<div
+									id="rent_buy_from"
+									class="stream-provider-container hideable">
+									<p class="f-bold color-gray">Rent/buy from</p>
+									<div class="stream-providers"></div>
+								</div>
+								<div class="wp-error-container">
+									<hr />
+									<p>Error loading watch providers</p>
+									<button class="error-btn" id="fetch_providers">
+										Load providers again
+									</button>
+								</div>
+								<p
+									id="powered_by_jw"
+									class="color-gray text-center f-size-12 hideable hide">
+									Providers powered by JustWatch
+								</p>
+							</div>
+						</div>
+						<div class="cb-error-container">
+							<h1>Something went wrong</h1>
+							<p>Please check your connection and try again</p>
+						</div>
+						<div class="bottom-filler"></div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-footer">
+				<div class="fetch-btn-container w-100 dark-gradient">
+					<button class="show-me-a-movie-btn fetch-film" data-popcorn-cost="50">
+						<span>SHOW ME A MOVIE</span>
+					</button>
+					<p class="mb-4 pot-results"><span>?</span> potential results</p>
+				</div>
+			</div>
 
-            <fieldset data-slider data-ent-type="1" class="hideable">
-              <h4>Max movie length</h4>
-              <div id="max_movie_length" class="mx-2"></div>
-            </fieldset>
+			<div class="disco-container">
+				<div>
+					<div class="movie-grid-container">
+						<div class="top-filler"></div>
+						<div class="movie-info">
+							<img src="img/poster_template.jpg" />
+						</div>
+						<h2 class="text-center">Poppin' the<br />popcorn</h2>
+						<div class="bottom-filler"></div>
+					</div>
+				</div>
+				<div class="disco-lights">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
 
-            <fieldset data-slider>
-              <h4>Release year</h4>
-              <div id="release_year" class="mx-2"></div>
-            </fieldset>
+			<div class="toggle-container">
+				<div class="p-1 pt-5">
+					<h3 class="pb-3 safe-area">FILTER</h3>
+					<form id="filter_form">
+						<fieldset data-buttons>
+							<label class="cb-container">
+								<input value="1" name="type_cb" type="radio" checked />
+								<span class="checkmark">Movies</span>
+							</label>
 
-            <fieldset data-buttons data-ent-type="2" class="hideable" name="shows_generes">
-              <h4>Series genres</h4>
-              <div class="c-container">
+							<label class="cb-container">
+								<input value="2" name="type_cb" type="radio" />
+								<span class="checkmark">Series</span>
+							</label>
+						</fieldset>
 
-              </div>
-            </fieldset>
-            <fieldset data-buttons data-ent-type="1" class="hideable" name="movie_generes">
-              <h4>Movie genres</h4>
-              <div class="c-container">
+						<fieldset data-slider>
+							<h4>Select a rating range</h4>
+							<div id="highest_rating" class="noUi-gold mx-2"></div>
+						</fieldset>
 
-              </div>
-            </fieldset>
+						<fieldset data-slider data-ent-type="1" class="hideable">
+							<h4>Max movie length</h4>
+							<div id="max_movie_length" class="mx-2"></div>
+						</fieldset>
 
-            <fieldset data-buttons class="hideable collapsable collapsed" name="original_languages">
-              <h4 class="p-0">Select original languages<span><img src="svg/arrow_down.svg"/></span></h4>
-              <p>Based on some of the most common languages</p>
-              <button class="btn-stripped hideable hide clear-input">Clear all selections</button>
-              <div class="c-container grid">
-                
-              </div>
-            </fieldset>
-            
-            <fieldset data-buttons data-ent-type="2" class="hideable collapsable collapsed" name="tv_providers">
-              <h4 class="p-0 m-0">Select streaming service<span><img src="svg/arrow_down.svg"/></span></h4>              
-              <p>Based on COUNTRY</p>
-              <button class="btn-stripped hideable hide clear-input">Clear all selections</button>
-              <div class="c-container grid">
+						<fieldset data-slider>
+							<h4>Release year</h4>
+							<div id="release_year" class="mx-2"></div>
+						</fieldset>
 
-              </div>
-            </fieldset>
+						<fieldset
+							data-buttons
+							data-ent-type="2"
+							class="hideable"
+							name="shows_generes">
+							<h4>Series genres</h4>
+							<div class="c-container"></div>
+						</fieldset>
+						<fieldset
+							data-buttons
+							data-ent-type="1"
+							class="hideable"
+							name="movie_generes">
+							<h4>Movie genres</h4>
+							<div class="c-container"></div>
+						</fieldset>
 
-            <fieldset data-buttons data-ent-type="1" class="hideable collapsable collapsed" name="movie_providers">
-              <h4 class="p-0">Select streaming service<span><img src="svg/arrow_down.svg"/></span></h4>
-              <p>Based on COUNTRY</p>
-              <button class="btn-stripped hideable hide clear-input">Clear all selections</button>
-              <div class="c-container grid">
+						<fieldset
+							data-buttons
+							class="hideable collapsable collapsed"
+							name="original_languages">
+							<h4 class="p-0">
+								Select original languages<span
+									><img src="svg/arrow_down.svg"
+								/></span>
+							</h4>
+							<p>Based on some of the most common languages</p>
+							<button class="btn-stripped hideable hide clear-input">
+								Clear all selections
+							</button>
+							<div class="c-container grid"></div>
+						</fieldset>
 
-              </div>
-            </fieldset>
-          </form>
-        </div>
-      </div>
+						<fieldset
+							data-buttons
+							data-ent-type="2"
+							class="hideable collapsable collapsed"
+							name="tv_providers">
+							<h4 class="p-0 m-0">
+								Select streaming service<span
+									><img src="svg/arrow_down.svg"
+								/></span>
+							</h4>
+							<p>Based on <span data-insert-country></span></p>
+							<button class="btn-stripped hideable hide clear-input">
+								Clear all selections
+							</button>
+							<div
+								class="c-container grid"
+								data-popcorn-cost="500"
+								data-popcorn-unlocked="0"
+								data-unlock-type="1"
+								data-popcorn-float></div>
+						</fieldset>
 
-      <div class="no-results-left-container hideable hide">
-        <div>
-          <h1 class="f-bold">Nothing more to show</h1>
-          <p>You have reached the last result with your current filtering. Start over again with new filters or go through your results again.</p>
-          <button class="show-me-a-movie-btn start-over fetch-film ignore">
-            <span>START OVER AGAIN</span>
-          </button>
-        </div>
-      </div>
+						<fieldset
+							data-buttons
+							data-ent-type="1"
+							class="hideable collapsable collapsed"
+							name="movie_providers">
+							<h4 class="p-0">
+								Select streaming service<span
+									><img src="svg/arrow_down.svg"
+								/></span>
+							</h4>
+							<p>Based on <span data-insert-country></span></p>
+							<button class="btn-stripped hideable hide clear-input">
+								Clear all selections
+							</button>
+							<div
+								class="c-container grid"
+								data-popcorn-cost="500"
+								data-popcorn-unlocked="0"
+								data-unlock-type="1"
+								data-popcorn-float></div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 
-      <div class="fetch-movie-btn-container">
-        <div class="fetch-btn-container">
-          <button class="show-me-a-movie-btn fetch-film">
-            <span>SHOW ME A MOVIE</span>
-          </button>
-          <p class="pot-results"><span>?</span> potential results</p>
-        </div>
-      </div>
-    </div>  
-    <script src="cordova.js"></script>
-    <script src="js/themoviedb.js"></script>
-    <script src="js/country_codes.js"></script>
-    <script src="js/index.js"></script>
-  </body>
+			<div id="no_results_left_container" class="modal-container hideable hide">
+				<div>
+					<h1 class="f-bold">Nothing more to show</h1>
+					<p>
+						You have reached the last result with your current filtering. Start
+						over again with new filters or go through your results again.
+					</p>
+					<button
+						class="show-me-a-movie-btn start-over fetch-film ignore"
+						data-popcorn-cost="50">
+						<span>START OVER AGAIN</span>
+					</button>
+				</div>
+			</div>
+
+			<div class="fetch-movie-btn-container">
+				<div class="fetch-btn-container">
+					<button class="show-me-a-movie-btn fetch-film" data-popcorn-cost="50">
+						<span>SHOW ME A MOVIE</span>
+					</button>
+					<p class="pot-results"><span>?</span> potential results</p>
+				</div>
+			</div>
+
+			<div id="more_popcorn_container" class="modal-container hideable hide">
+				<div>
+					<h1 class="f-bold">Get more popcorns</h1>
+					<p>
+						To be able to continue, watch a quick ad and get
+						<span class="popcorn">1000 popcorns!</span>
+					</p>
+					<button class="show-me-a-movie-btn ignore start-ad">
+						<span>WATCH AD</span>
+					</button>
+					<br />
+					<button class="close-modal design pt-2">Close</button>
+				</div>
+			</div>
+			<div id="get_reward_container" class="modal-container hideable hide">
+				<div>
+					<i class="reward"></i>
+					<br />
+					<h1 class="f-bold">Reward</h1>
+					<br />
+					<p>Nice job! Here is your reward</p>
+				</div>
+			</div>
+			<div id="popcorn_info_container" class="modal-container hideable hide">
+				<div>
+					<h1 class="f-bold"><span class="popcorn">Popcorns!</span></h1>
+					<p>
+						Use <span class="popcorn">popcorns</span> to get results and unlock
+						better filtering. No payment required! Get more popcorn by watching
+						ads or by just using the app.
+					</p>
+					<button
+						class="btn-default gold claim close-modal"
+						data-claim-target="c1">
+						Ok! Give me
+						<span class="popcorn" data-value="750">750</span>
+					</button>
+					<br />
+					<button class="close-modal design pt-2">Close</button>
+				</div>
+			</div>
+		</div>
+		<script src="cordova.js"></script>
+		<script src="js/themoviedb.js"></script>
+		<script src="js/country_codes.js"></script>
+		<script src="js/popcorns.js"></script>
+		<script src="js/particle.js"></script>
+		<script src="js/ads.js"></script>
+		<script src="js/media.js"></script>
+		<script src="js/index.js"></script>
+	</body>
 </html>
