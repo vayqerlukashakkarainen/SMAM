@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.vayqer.movieapp" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.vayqer.movieapp" version="1.0.3" xmlns:android="http://schemas.android.com/apk/res/android" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ShowMeAMovie</name>
     <description>An app where you randmoize series or movies to watch next</description>
     <author email="lukas@vayqer.se" href="https://www.vayqer.se">
@@ -218,7 +218,7 @@
             </array>
         </edit-config>
         <edit-config target="NSUserTrackingUsageDescription" file="*-Info.plist" mode="merge">
-            <string>My tracking usage description</string>
+            <string>Your data will be used to deliver personalized ads to you.</string>
         </edit-config>
         <edit-config target="GADApplicationIdentifier" file="*-Info.plist" mode="merge">
             <string>ca-app-pub-7908747033760630~6683908401</string>

@@ -111,6 +111,7 @@ function onDeviceReady() {
 
 	Load();
 	adsContainer.Setup();
+	mediaContainer.Setup();
 
 	// TODO: Fetch device language and move the main scope here
 	if (navigator.globalization !== undefined) {
@@ -721,9 +722,8 @@ function onDeviceReady() {
 	}
 
 	function ResetPosterAndBanner() {
-		document.querySelector("#tmdb_poster").src =
-			"../www/img/poster_template.jpg";
-		document.querySelector("#tmdb_banner").src = "../www/img/banner.jpg";
+		document.querySelector("#tmdb_poster").src = "img/poster_template.jpg";
+		document.querySelector("#tmdb_banner").src = "img/banner.jpg";
 	}
 	function SetPosterAndBanner(discover) {
 		document.querySelector(

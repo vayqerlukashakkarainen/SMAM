@@ -12,6 +12,8 @@ var adsContainer = {
 	adId: "",
 	debug: false,
 	rewarded: undefined,
+	adLoadTries: 0,
+	maxAdLoadTries: 5,
 
 	Setup: async function () {
 		if (admob !== undefined) {
@@ -27,16 +29,18 @@ var adsContainer = {
 					} else {
 						this.adId = this.iosAdId;
 					}
+
 					this.npa = await consent.trackingAuthorizationStatus();
 					/*
-                    trackingAuthorizationStatus:
-                    0 = notDetermined
-                    1 = restricted
-                    2 = denied
-                    3 = authorized
-                    */
+					trackingAuthorizationStatus:
+					0 = notDetermined
+					1 = restricted
+					2 = denied
+					3 = authorized
+					*/
 					const statusNew = await consent.requestTrackingAuthorization();
 					this.npa = statusNew;
+
 					break;
 				case "android":
 					if (this.debug) {
@@ -48,17 +52,21 @@ var adsContainer = {
 			}
 
 			const consentStatus = await consent.getConsentStatus();
+			console.log(`consentStatus: ${consentStatus}`);
 			if (consentStatus === consent.ConsentStatus.Required) {
 				await consent.requestInfoUpdate();
 			}
 
 			const formStatus = await consent.getFormStatus();
+			console.log(`formStatus: ${formStatus}`);
+			console.log(
+				`consent.FormStatus.Available: ${consent.FormStatus.Available}`
+			);
 			if (formStatus === consent.FormStatus.Available) {
 				const form = await consent.loadForm();
 				form.show();
 			}
 
-			console.log(this.npa);
 			this.init = true;
 			this.PrepareAd();
 		}
@@ -66,11 +74,17 @@ var adsContainer = {
 	ShowAdsContainer: function (fromType) {},
 	ShowRewardedAd: async function () {
 		if (this.init && this.rewarded !== undefined) {
-			console.log("Start ad");
+			if (this.adLoadTries >= this.maxAdLoadTries) {
+				popcornContainer.HideMorePopcornContainer();
+				popcornContainer.ShowReward(600, true);
+			} else {
+				console.log("Start ad");
 
-			await this.rewarded.show();
+				await this.rewarded.show();
+			}
 
-			this.PrepareAd();
+			this.adLoadTries = 0;
+			this.LoadAd();
 		}
 	},
 	PrepareAd: async function () {
@@ -82,10 +96,17 @@ var adsContainer = {
 
 			this.rewarded.on("load", adsContainer.events.Load);
 			this.rewarded.on("reward", adsContainer.events.GiveReward);
-			this.rewarded.on("showFailed", adsContainer.events.ShowFailed);
-			this.rewarded.on("loadFailed", adsContainer.events.LoadFailed);
+			this.rewarded.on("showFail", adsContainer.events.ShowFailed);
+			this.rewarded.on("loadFail", adsContainer.events.LoadFailed);
 
+			this.LoadAd();
+		}
+	},
+	LoadAd: async function () {
+		if (this.rewarded !== undefined) {
 			await this.rewarded.load();
+		} else {
+			this.PrepareAd();
 		}
 	},
 	events: {
@@ -94,13 +115,20 @@ var adsContainer = {
 		},
 		GiveReward: async function (event) {
 			popcornContainer.HideMorePopcornContainer();
-			popcornContainer.ShowReward(1000);
+			popcornContainer.ShowReward(1000, false);
 		},
 		LoadFailed: function (event) {
-			adsContainer.PrepareAd();
+			if (adsContainer.adLoadTries < adsContainer.maxAdLoadTries) {
+				adsContainer.LoadAd();
+				adsContainer.adLoadTries++;
+				console.log(
+					`Failed to load add, retrying... ${adsContainer.adLoadTries}`
+				);
+			}
 		},
 		ShowFailed: function (event) {
-			alert("Ad failed to show, please try again");
+			popcornContainer.HideMorePopcornContainer();
+			popcornContainer.ShowReward(600, true);
 		},
 	},
 };

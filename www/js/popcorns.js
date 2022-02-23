@@ -209,8 +209,15 @@ var popcornContainer = {
 			});
 		}
 	},
-	ShowReward: function (amount) {
+	ShowReward: function (amount, adFailed) {
 		if (amount > 0) {
+			if (adFailed) {
+				document.querySelector("#get_reward_container p").textContent =
+					"The ad failed to load, but it's not your fault. So here is a reward anyway!";
+			} else {
+				document.querySelector("#get_reward_container p").textContent =
+					"Nice job! Thank you for supporting us. Here is your reward";
+			}
 			document.querySelector("#get_reward_container").classList.remove("hide");
 			document.querySelector("#get_reward_container > div").insertAdjacentHTML(
 				"beforeend",
@@ -266,17 +273,22 @@ var popcornContainer = {
 						0
 					);
 				}
-				mediaContainer.PlayAudio(mediaContainer.audio.bellMircowave);
 
 				// Remove the claim btn
 				var claimTarget = el.dataset.claimTarget;
 				if (claimTarget !== undefined) {
 					popcornContainer.initValueClaimed = true;
+					// Fallback remove
+					var timeoutRemove = setTimeout(function () {
+						el.remove();
+					}, 2000);
+
 					var el = document.querySelector(
 						`.claim[data-claim-id="${claimTarget}"]`
 					);
 					el.style.animation = "claim 500ms ease";
 					el.addEventListener("transitionend", function () {
+						clearTimeout(timeoutRemove);
 						el.remove();
 					});
 					el.addEventListener("animationend", function () {
@@ -286,6 +298,8 @@ var popcornContainer = {
 
 				// Hide container
 				document.querySelector("#get_reward_container").classList.add("hide");
+
+				mediaContainer.PlayAudio(mediaContainer.audio.bellMircowave);
 			}
 		},
 	},

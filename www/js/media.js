@@ -1,4 +1,15 @@
 var mediaContainer = {
+	Setup: function () {
+		var assetUrl =
+			cordova.platformId === "android" ? "/android_asset/www/" : "";
+
+		this.audio.pop.url = assetUrl + "sounds/pop.mp3";
+		this.audio.bellMircowave.url = assetUrl + "sounds/bell_microwave.mp3";
+		this.audio.popcornCernel.url = assetUrl + "sounds/popcorn_cernel.mp3";
+		this.audio.blbl.url = assetUrl + "sounds/blbl.mp3";
+		this.audio.disco.url = assetUrl + "sounds/disco.mp3";
+		this.audio.discoDancing.url = assetUrl + "sounds/disco_start.mp3";
+	},
 	repeatedMedia: {
 		medias: [],
 		currentPlayingIndex: 0,
@@ -90,8 +101,7 @@ var mediaContainer = {
 					},
 					// error callback
 					function (err) {
-						my_media.release();
-						console.log("playAudio():Audio Error: " + err);
+						console.log("playAudio():Audio Error: " + err.code);
 					}
 				);
 				// Play audio
