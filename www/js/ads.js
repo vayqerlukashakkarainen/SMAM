@@ -13,12 +13,12 @@ var adsContainer = {
 	debug: false,
 	rewarded: undefined,
 	adLoadTries: 0,
-	maxAdLoadTries: 5,
+	maxAdLoadTries: 3,
 
 	Setup: async function () {
 		if (admob !== undefined) {
 			admob.configure({
-				testDeviceIds: ["ae01ce688fa07399fef10caa2f4ed93c"],
+				testDeviceIds: ["6aa9a13e4798787fd844b4654021422"],
 			});
 		}
 		if (consent !== undefined) {
@@ -71,12 +71,12 @@ var adsContainer = {
 			this.PrepareAd();
 		}
 	},
-	ShowAdsContainer: function (fromType) {},
 	ShowRewardedAd: async function () {
 		if (this.init && this.rewarded !== undefined) {
 			if (this.adLoadTries >= this.maxAdLoadTries) {
 				popcornContainer.HideMorePopcornContainer();
 				popcornContainer.ShowReward(600, true);
+				this.LoadAd();
 			} else {
 				console.log("Start ad");
 
@@ -84,7 +84,6 @@ var adsContainer = {
 			}
 
 			this.adLoadTries = 0;
-			this.LoadAd();
 		}
 	},
 	PrepareAd: async function () {
@@ -114,21 +113,26 @@ var adsContainer = {
 			console.log("Ad loaded");
 		},
 		GiveReward: async function (event) {
+			console.log("Giving award!");
 			popcornContainer.HideMorePopcornContainer();
 			popcornContainer.ShowReward(1000, false);
+			adsContainer.LoadAd();
 		},
 		LoadFailed: function (event) {
 			if (adsContainer.adLoadTries < adsContainer.maxAdLoadTries) {
-				adsContainer.LoadAd();
-				adsContainer.adLoadTries++;
-				console.log(
-					`Failed to load add, retrying... ${adsContainer.adLoadTries}`
-				);
+				setTimeout(function () {
+					adsContainer.LoadAd();
+					adsContainer.adLoadTries++;
+					console.log(
+						`Failed to load add, retrying... ${adsContainer.adLoadTries}`
+					);
+				}, 2000);
 			}
 		},
 		ShowFailed: function (event) {
 			popcornContainer.HideMorePopcornContainer();
 			popcornContainer.ShowReward(600, true);
+			adsContainer.LoadAd();
 		},
 	},
 };

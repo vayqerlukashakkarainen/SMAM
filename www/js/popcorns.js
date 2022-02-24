@@ -278,21 +278,23 @@ var popcornContainer = {
 				var claimTarget = el.dataset.claimTarget;
 				if (claimTarget !== undefined) {
 					popcornContainer.initValueClaimed = true;
-					// Fallback remove
-					var timeoutRemove = setTimeout(function () {
-						el.remove();
-					}, 2000);
 
-					var el = document.querySelector(
+					var elTarget = document.querySelector(
 						`.claim[data-claim-id="${claimTarget}"]`
 					);
-					el.style.animation = "claim 500ms ease";
-					el.addEventListener("transitionend", function () {
+
+					// Fallback remove
+					var timeoutRemove = setTimeout(function () {
+						elTarget.remove();
+					}, 2000);
+
+					elTarget.style.animation = "claim 500ms ease";
+					elTarget.addEventListener("transitionend", function () {
 						clearTimeout(timeoutRemove);
-						el.remove();
+						elTarget.remove();
 					});
-					el.addEventListener("animationend", function () {
-						el.classList.add("remove");
+					elTarget.addEventListener("animationend", function () {
+						elTarget.classList.add("remove");
 					});
 				}
 
