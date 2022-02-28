@@ -1,6 +1,11 @@
 document.querySelector(".start-ad").addEventListener("click", function () {
 	adsContainer.ShowRewardedAd();
 });
+document
+	.querySelector("#update_consent_btn")
+	.addEventListener("click", function () {
+		adsContainer.LoadNewConsent();
+	});
 
 var adsContainer = {
 	npa: 0,
@@ -14,11 +19,18 @@ var adsContainer = {
 	rewarded: undefined,
 	adLoadTries: 0,
 	maxAdLoadTries: 3,
+	form: undefined,
+	consentStatus: 0,
+	npa: "1",
 
-	Setup: async function () {
+	Setup: async function (save) {
+		if (save.ads !== undefined) {
+			this.consentStatus = save.ads.consentStatus;
+		}
+
 		if (admob !== undefined) {
 			admob.configure({
-				testDeviceIds: ["6aa9a13e4798787fd844b4654021422"],
+				testDeviceIds: ["8995bb506bc9386db0c4cbd69dd7b466"],
 			});
 		}
 		if (consent !== undefined) {
@@ -29,18 +41,6 @@ var adsContainer = {
 					} else {
 						this.adId = this.iosAdId;
 					}
-
-					this.npa = await consent.trackingAuthorizationStatus();
-					/*
-					trackingAuthorizationStatus:
-					0 = notDetermined
-					1 = restricted
-					2 = denied
-					3 = authorized
-					*/
-					const statusNew = await consent.requestTrackingAuthorization();
-					this.npa = statusNew;
-
 					break;
 				case "android":
 					if (this.debug) {
@@ -51,24 +51,33 @@ var adsContainer = {
 					break;
 			}
 
-			const consentStatus = await consent.getConsentStatus();
-			console.log(`consentStatus: ${consentStatus}`);
-			if (consentStatus === consent.ConsentStatus.Required) {
+			if (this.consentStatus === 0) {
 				await consent.requestInfoUpdate();
-			}
 
-			const formStatus = await consent.getFormStatus();
-			console.log(`formStatus: ${formStatus}`);
-			console.log(
-				`consent.FormStatus.Available: ${consent.FormStatus.Available}`
-			);
-			if (formStatus === consent.FormStatus.Available) {
-				const form = await consent.loadForm();
-				form.show();
+				const formStatus = await consent.getFormStatus();
+				if (formStatus === consent.FormStatus.Available) {
+					this.form = await consent.loadForm();
+					this.form.show();
+				}
+
+				this.consentStatus = 1;
+				Save();
 			}
 
 			this.init = true;
 			this.PrepareAd();
+		}
+	},
+	ResetConsent: function () {
+		consent.reset();
+	},
+	LoadNewConsent: async function () {
+		await consent.requestInfoUpdate();
+
+		const formStatus = await consent.getFormStatus();
+		if (formStatus === consent.FormStatus.Available) {
+			this.form = await consent.loadForm();
+			this.form.show();
 		}
 	},
 	ShowRewardedAd: async function () {

@@ -37,6 +37,9 @@ var save = {
 	popcornsUsed: 0,
 	unlockedTypes: [],
 	initValueClaimed: false,
+	ads: {
+		consentStatus: 0,
+	},
 };
 function Save() {
 	// Set all data
@@ -44,6 +47,8 @@ function Save() {
 	save.unlockedTypes = popcornContainer.unlockedTypes;
 	save.initValueClaimed = popcornContainer.initValueClaimed;
 	save.popcornsUsed = popcornContainer.popcornsUsed;
+
+	save.ads.consentStatus = adsContainer.consentStatus ?? 0;
 
 	json = JSON.stringify(save);
 
@@ -53,7 +58,7 @@ function Load() {
 	storageSave = JSON.parse(window.localStorage.getItem("save"));
 
 	if (storageSave !== null) {
-		save = storageSave;
+		Object.assign(save, storageSave);
 	}
 }
 
@@ -110,10 +115,10 @@ function onDeviceReady() {
 		rect.y + rect.height / 2;
 
 	Load();
-	adsContainer.Setup();
 	mediaContainer.Setup();
+	adsContainer.Setup(save);
+	popcornContainer.Setup(save);
 
-	// TODO: Fetch device language and move the main scope here
 	if (navigator.globalization !== undefined) {
 		navigator.globalization.getLocaleName(
 			function (locale) {
@@ -146,8 +151,6 @@ function onDeviceReady() {
 	} else {
 		LoadOriginalLanguages();
 	}
-
-	popcornContainer.Setup(save);
 
 	const tmdbPosterUrl = "https://www.themoviedb.org/t/p/w500";
 	const tmdbBannerUrl =
