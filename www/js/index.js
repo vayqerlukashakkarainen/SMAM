@@ -215,6 +215,29 @@ function onDeviceReady() {
 		observer.observe(el, { attributes: true });
 	});
 
+	document.querySelectorAll(".tab-links > *").forEach((el) => {
+		el.addEventListener("click", function (e) {
+			var group = e.target.dataset.tabGroup;
+			var id = e.target.dataset.tabTarget;
+
+			document
+				.querySelectorAll(`.tab-links > *.active[data-tab-group="${group}"]`)
+				.forEach((links) => {
+					links.classList.remove("active");
+				});
+			document
+				.querySelectorAll(`.tab.active[data-tab-group="${group}"]`)
+				.forEach((groups) => {
+					groups.classList.remove("active");
+				});
+
+			e.target.classList.add("active");
+			document
+				.querySelector(`.tab[data-tab-group="${group}"][data-tab-id="${id}"]`)
+				.classList.add("active");
+		});
+	});
+
 	document
 		.querySelector(`#toggle_overlay`)
 		.addEventListener("click", function () {

@@ -178,112 +178,126 @@
 
 			<div class="toggle-container">
 				<div class="p-1 pt-5">
-					<h3 class="pb-3 safe-area">FILTER</h3>
-					<form id="filter_form">
-						<fieldset data-buttons>
-							<label class="cb-container">
-								<input value="1" name="type_cb" type="radio" checked />
-								<span class="checkmark">Movies</span>
-							</label>
+					<div class="tab-links pb-3 safe-area">
+						<h3 class="active" data-tab-group="filter" data-tab-target="filter">
+							FILTER
+						</h3>
+						<!-- <h3 data-tab-group="filter" data-tab-target="settings">SETTINGS</h3> -->
+					</div>
+					<div class="tab active" data-tab-group="filter" data-tab-id="filter">
+						<form id="filter_form">
+							<fieldset data-buttons>
+								<label class="cb-container">
+									<input value="1" name="type_cb" type="radio" checked />
+									<span class="checkmark">Movies</span>
+								</label>
 
-							<label class="cb-container">
-								<input value="2" name="type_cb" type="radio" />
-								<span class="checkmark">Series</span>
-							</label>
-						</fieldset>
+								<label class="cb-container">
+									<input value="2" name="type_cb" type="radio" />
+									<span class="checkmark">Series</span>
+								</label>
+							</fieldset>
 
-						<fieldset data-slider>
-							<h4>Select a rating range</h4>
-							<div id="highest_rating" class="noUi-gold mx-2"></div>
-						</fieldset>
+							<fieldset data-slider>
+								<h4>Select a rating range</h4>
+								<div id="highest_rating" class="noUi-gold mx-2"></div>
+							</fieldset>
 
-						<fieldset data-slider data-ent-type="1" class="hideable">
-							<h4>Max movie length</h4>
-							<div id="max_movie_length" class="mx-2"></div>
-						</fieldset>
+							<fieldset data-slider data-ent-type="1" class="hideable">
+								<h4>Max movie length</h4>
+								<div id="max_movie_length" class="mx-2"></div>
+							</fieldset>
 
-						<fieldset data-slider>
-							<h4>Release year</h4>
-							<div id="release_year" class="mx-2"></div>
-						</fieldset>
+							<fieldset data-slider>
+								<h4>Release year</h4>
+								<div id="release_year" class="mx-2"></div>
+							</fieldset>
 
-						<fieldset
-							data-buttons
-							data-ent-type="2"
-							class="hideable"
-							name="shows_generes">
-							<h4>Series genres</h4>
-							<div class="c-container"></div>
-						</fieldset>
-						<fieldset
-							data-buttons
-							data-ent-type="1"
-							class="hideable"
-							name="movie_generes">
-							<h4>Movie genres</h4>
-							<div class="c-container"></div>
-						</fieldset>
+							<fieldset
+								data-buttons
+								data-ent-type="2"
+								class="hideable"
+								name="shows_generes">
+								<h4>Series genres</h4>
+								<div class="c-container"></div>
+							</fieldset>
+							<fieldset
+								data-buttons
+								data-ent-type="1"
+								class="hideable"
+								name="movie_generes">
+								<h4>Movie genres</h4>
+								<div class="c-container"></div>
+							</fieldset>
 
-						<fieldset
-							data-buttons
-							class="hideable collapsable collapsed"
-							name="original_languages">
-							<h4 class="p-0">
-								Select original languages<span
-									><img src="svg/arrow_down.svg"
-								/></span>
-							</h4>
-							<p>Based on some of the most common languages</p>
-							<button class="btn-stripped hideable hide clear-input">
-								Clear all selections
-							</button>
-							<div class="c-container grid"></div>
-						</fieldset>
+							<fieldset
+								data-buttons
+								class="hideable collapsable collapsed"
+								name="original_languages">
+								<h4 class="p-0">
+									Select original languages<span
+										><img src="svg/arrow_down.svg"
+									/></span>
+								</h4>
+								<p>Based on some of the most common languages</p>
+								<button class="btn-stripped hideable hide clear-input">
+									Clear all selections
+								</button>
+								<div class="c-container grid"></div>
+							</fieldset>
 
-						<fieldset
-							data-buttons
-							data-ent-type="2"
-							class="hideable collapsable collapsed"
-							name="tv_providers">
-							<h4 class="p-0 m-0">
-								Select streaming service<span
-									><img src="svg/arrow_down.svg"
-								/></span>
-							</h4>
-							<p>Based on <span data-insert-country></span></p>
-							<button class="btn-stripped hideable hide clear-input">
-								Clear all selections
-							</button>
-							<div
-								class="c-container grid"
-								data-popcorn-cost="500"
-								data-popcorn-unlocked="0"
-								data-unlock-type="1"
-								data-popcorn-float></div>
-						</fieldset>
+							<fieldset
+								data-buttons
+								data-ent-type="2"
+								class="hideable collapsable collapsed"
+								name="tv_providers">
+								<h4 class="p-0 m-0">
+									Select streaming service<span
+										><img src="svg/arrow_down.svg"
+									/></span>
+								</h4>
+								<p>Based on <span data-insert-country></span></p>
+								<button class="btn-stripped hideable hide clear-input">
+									Clear all selections
+								</button>
+								<div
+									class="c-container grid"
+									data-popcorn-cost="500"
+									data-popcorn-unlocked="0"
+									data-unlock-type="1"
+									data-popcorn-float></div>
+							</fieldset>
 
-						<fieldset
-							data-buttons
-							data-ent-type="1"
-							class="hideable collapsable collapsed"
-							name="movie_providers">
-							<h4 class="p-0">
-								Select streaming service<span
-									><img src="svg/arrow_down.svg"
-								/></span>
-							</h4>
-							<p>Based on <span data-insert-country></span></p>
-							<button class="btn-stripped hideable hide clear-input">
-								Clear all selections
-							</button>
-							<div
-								class="c-container grid"
-								data-popcorn-cost="500"
-								data-popcorn-unlocked="0"
-								data-unlock-type="1"
-								data-popcorn-float></div>
-						</fieldset>
-					</form>
+							<fieldset
+								data-buttons
+								data-ent-type="1"
+								class="hideable collapsable collapsed"
+								name="movie_providers">
+								<h4 class="p-0">
+									Select streaming service<span
+										><img src="svg/arrow_down.svg"
+									/></span>
+								</h4>
+								<p>Based on <span data-insert-country></span></p>
+								<button class="btn-stripped hideable hide clear-input">
+									Clear all selections
+								</button>
+								<div
+									class="c-container grid"
+									data-popcorn-cost="500"
+									data-popcorn-unlocked="0"
+									data-unlock-type="1"
+									data-popcorn-float></div>
+							</fieldset>
+						</form>
+					</div>
+					<div class="tab" data-tab-group="filter" data-tab-id="settings">
+						<h4>Consent</h4>
+						<p>Manage the ads preferences</p>
+						<button class="btn-default" id="update_consent_btn">
+							Update consent status
+						</button>
+					</div>
 				</div>
 			</div>
 

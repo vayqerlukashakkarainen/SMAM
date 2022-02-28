@@ -135,6 +135,24 @@ img.loading {
 	pointer-events: none;
 }
 
+.tab-links {
+	display: flex;
+}
+.tab-links > * {
+	padding-right: 22px;
+	transition: all 200ms ease;
+	-webkit-transition: all 200ms ease;
+}
+.tab-links > *:not(.active) {
+	opacity: 0.6;
+}
+.tab {
+	display: none;
+}
+.tab.active {
+	display: block;
+}
+
 .collapsable * {
 	transition: all 200ms ease;
 	-webkit-transition: all 200ms ease;
