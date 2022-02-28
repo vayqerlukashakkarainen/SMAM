@@ -217,9 +217,6 @@
                 <string>zu</string>
             </array>
         </edit-config>
-        <edit-config target="NSUserTrackingUsageDescription" file="*-Info.plist" mode="merge">
-            <string>Your data will be used to deliver personalized ads to you.</string>
-        </edit-config>
         <edit-config target="GADApplicationIdentifier" file="*-Info.plist" mode="merge">
             <string>ca-app-pub-7908747033760630~6683908401</string>
         </edit-config>
