@@ -830,30 +830,34 @@ function onDeviceReady() {
 		if (countryProvider !== undefined) {
 			if (countryProvider.flatrate !== undefined) {
 				countryProvider.flatrate.forEach((provider) => {
-					document
-						.querySelector("#stream_from .stream-providers")
-						.insertAdjacentHTML(
-							"beforeend",
-							`
+					if (!FilterOutProvider(provider.provider_name)) {
+						document
+							.querySelector("#stream_from .stream-providers")
+							.insertAdjacentHTML(
+								"beforeend",
+								`
                         <div class="provider" data-id="${provider.provider_id}">
                             <img src="${tmdbIconUrl}${provider.logo_path}"/>
                             <p>${provider.provider_name}</p>
                         </div>`
-						);
+							);
+					}
 				});
 			}
 			if (countryProvider.rent !== undefined) {
 				countryProvider.rent.forEach((provider) => {
-					document
-						.querySelector("#rent_buy_from .stream-providers")
-						.insertAdjacentHTML(
-							"beforeend",
-							`
+					if (!FilterOutProvider(provider.provider_name)) {
+						document
+							.querySelector("#rent_buy_from .stream-providers")
+							.insertAdjacentHTML(
+								"beforeend",
+								`
                             <div class="provider" data-id="${provider.provider_id}">
                                 <img src="${tmdbIconUrl}${provider.logo_path}"/>
                                 <p>${provider.provider_name}</p>
                             </div>`
-						);
+							);
+					}
 				});
 			}
 			if (countryProvider.buy !== undefined) {
@@ -863,16 +867,18 @@ function onDeviceReady() {
 							`#rent_buy_from .stream-providers > *[data-id="${provider.provider_id}"]`
 						) === null
 					) {
-						document
-							.querySelector("#rent_buy_from .stream-providers")
-							.insertAdjacentHTML(
-								"beforeend",
-								`
+						if (!FilterOutProvider(provider.provider_name)) {
+							document
+								.querySelector("#rent_buy_from .stream-providers")
+								.insertAdjacentHTML(
+									"beforeend",
+									`
                                 <div class="provider" data-id="${provider.provider_id}">
                                     <img src="${tmdbIconUrl}${provider.logo_path}"/>
                                     <p>${provider.provider_name}</p>    
                                 </div>`
-							);
+								);
+						}
 					}
 				});
 			}
@@ -922,6 +928,14 @@ function onDeviceReady() {
 			document.querySelector(".app").classList.remove("loading");
 			mediaContainer.PlayAudio(mediaContainer.audio.pop);
 		}
+	}
+
+	function FilterOutProvider(providerName) {
+		if (cordova.platformId === "ios") {
+			return providerName.toLowerCase().includes("google");
+		}
+
+		return false;
 	}
 
 	function WatchProviderErrorCallback() {
@@ -1076,25 +1090,27 @@ function onDeviceReady() {
 						`#filter_form fieldset[name="movie_providers"] > div.c-container`
 					);
 					obj.results.forEach((provider) => {
-						providerContainer.insertAdjacentHTML(
-							"beforeend",
-							`
+						if (!FilterOutProvider(provider.provider_name)) {
+							providerContainer.insertAdjacentHTML(
+								"beforeend",
+								`
                                 <label class="cb-container provider" data-id="${provider.provider_id}">
                                     <input type="checkbox" value="${provider.provider_id}">
                                     <span class="checkmark"><img src="${tmdbIconUrl}${provider.logo_path}" /><span>${provider.provider_name}</span></span>
                                 </label>`
-						);
+							);
 
-						document
-							.querySelector(
-								`fieldset[name="movie_providers"] label[data-id="${provider.provider_id}"]`
-							)
-							.addEventListener("change", function (event) {
-								CheckIfCollapsableGotSelectedChildren(
-									event.target.closest("fieldset.collapsable")
-								);
-								FetchPotentialResults();
-							});
+							document
+								.querySelector(
+									`fieldset[name="movie_providers"] label[data-id="${provider.provider_id}"]`
+								)
+								.addEventListener("change", function (event) {
+									CheckIfCollapsableGotSelectedChildren(
+										event.target.closest("fieldset.collapsable")
+									);
+									FetchPotentialResults();
+								});
+						}
 					});
 				}
 			},
