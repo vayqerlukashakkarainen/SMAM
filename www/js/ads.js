@@ -28,9 +28,12 @@ var adsContainer = {
 			this.consentStatus = save.ads.consentStatus;
 		}
 
-		if (admob !== undefined) {
+		if (admob !== undefined && this.debug) {
 			admob.configure({
-				testDeviceIds: ["8995bb506bc9386db0c4cbd69dd7b466"],
+				testDeviceIds: [
+					"8995bb506bc9386db0c4cbd69dd7b466",
+					"DB6505B160C8BB680644D0C46BDEA3D9",
+				],
 			});
 		}
 		if (consent !== undefined) {
