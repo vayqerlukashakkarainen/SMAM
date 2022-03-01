@@ -28,8 +28,8 @@
 	"cordova": {
 		"platforms": [
 			"browser",
-			"ios",
-			"android"
+			"android",
+			"ios"
 		],
 		"plugins": {
 			"cordova-plugin-globalization": {},
@@ -46,7 +46,6 @@
 				"APP_ID_ANDROID": "ca-app-pub-7908747033760630~4057745068",
 				"APP_ID_IOS": "ca-app-pub-7908747033760630~6683908401",
 				"PLAY_SERVICES_VERSION": "20.3.0",
-				"USAGE": "This identifier will be used to deliver personalized ads to you.",
 				"DISABLESDKCRASHREPORTING": "false"
 			}
 		}

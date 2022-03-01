@@ -129,7 +129,7 @@ var popcornContainer = {
 			document.querySelector(".intro > div").insertAdjacentHTML(
 				"beforeend",
 				`						
-                <button data-claim-id="c1" data-claim-target="c1" data-init="${
+                <button data-claim-id="c2" data-claim-target="c2" data-init="${
 									!this.initValueClaimed ? 1 : 0
 								}" class="btn-default gold claim">
                     ${
@@ -279,23 +279,23 @@ var popcornContainer = {
 				if (claimTarget !== undefined) {
 					popcornContainer.initValueClaimed = true;
 
-					var elTarget = document.querySelector(
-						`.claim[data-claim-id="${claimTarget}"]`
-					);
+					document
+						.querySelectorAll(`.claim[data-claim-id="${claimTarget}"]`)
+						.forEach((elTarget) => {
+							// Fallback remove
+							var timeoutRemove = setTimeout(function () {
+								elTarget.remove();
+							}, 2000);
 
-					// Fallback remove
-					var timeoutRemove = setTimeout(function () {
-						elTarget.remove();
-					}, 2000);
-
-					elTarget.style.animation = "claim 500ms ease";
-					elTarget.addEventListener("transitionend", function () {
-						clearTimeout(timeoutRemove);
-						elTarget.remove();
-					});
-					elTarget.addEventListener("animationend", function () {
-						elTarget.classList.add("remove");
-					});
+							elTarget.style.animation = "claim 500ms ease";
+							elTarget.addEventListener("transitionend", function () {
+								clearTimeout(timeoutRemove);
+								elTarget.remove();
+							});
+							elTarget.addEventListener("animationend", function () {
+								elTarget.classList.add("remove");
+							});
+						});
 				}
 
 				// Hide container
