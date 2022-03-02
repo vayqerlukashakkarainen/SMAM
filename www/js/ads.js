@@ -9,7 +9,6 @@ document
 
 var adsContainer = {
 	npa: 0,
-	init: false,
 	iosAdId: "ca-app-pub-7908747033760630/3571170656",
 	androidAdId: "ca-app-pub-7908747033760630/7071431961",
 	devIosAdId: "ca-app-pub-3940256099942544/1712485313",
@@ -24,11 +23,12 @@ var adsContainer = {
 	npa: "1",
 
 	Setup: async function (save) {
+		console.log("Setup ads");
 		if (save.ads !== undefined) {
 			this.consentStatus = save.ads.consentStatus;
 		}
 
-		if (admob !== undefined && this.debug) {
+		if (this.debug) {
 			admob.configure({
 				testDeviceIds: [
 					"8995bb506bc9386db0c4cbd69dd7b466",
@@ -36,40 +36,41 @@ var adsContainer = {
 				],
 			});
 		}
-		if (consent !== undefined) {
-			switch (cordova.platformId) {
-				case "ios":
-					if (this.debug) {
-						this.adId = this.devIosAdId;
-					} else {
-						this.adId = this.iosAdId;
-					}
-					break;
-				case "android":
-					if (this.debug) {
-						this.adId = this.devAndroidAdId;
-					} else {
-						this.adId = this.androidAdId;
-					}
-					break;
-			}
 
-			if (this.consentStatus === 0) {
-				await consent.requestInfoUpdate();
-
-				const formStatus = await consent.getFormStatus();
-				if (formStatus === consent.FormStatus.Available) {
-					this.form = await consent.loadForm();
-					this.form.show();
+		switch (cordova.platformId) {
+			case "ios":
+				if (this.debug) {
+					this.adId = this.devIosAdId;
+				} else {
+					this.adId = this.iosAdId;
 				}
+				break;
+			case "android":
+				if (this.debug) {
+					this.adId = this.devAndroidAdId;
+				} else {
+					this.adId = this.androidAdId;
+				}
+				break;
+		}
 
-				this.consentStatus = 1;
-				Save();
+		if (this.consentStatus === 0) {
+			const consentStatus = await consent.getConsentStatus();
+			if (consentStatus === consent.ConsentStatus.Required) {
+				await consent.requestInfoUpdate();
 			}
 
-			this.init = true;
-			this.PrepareAd();
+			const formStatus = await consent.getFormStatus();
+			if (formStatus === consent.FormStatus.Available) {
+				this.form = await consent.loadForm();
+				this.form.show();
+			}
+
+			this.consentStatus = 1;
+			Save();
 		}
+
+		this.PrepareAd();
 	},
 	ResetConsent: function () {
 		consent.reset();
@@ -84,7 +85,7 @@ var adsContainer = {
 		}
 	},
 	ShowRewardedAd: async function () {
-		if (this.init && this.rewarded !== undefined) {
+		if (this.rewarded !== undefined) {
 			if (this.adLoadTries >= this.maxAdLoadTries) {
 				popcornContainer.HideMorePopcornContainer();
 				popcornContainer.ShowReward(600, true);
@@ -99,22 +100,23 @@ var adsContainer = {
 		}
 	},
 	PrepareAd: async function () {
-		if (this.init) {
-			this.rewarded = new admob.RewardedAd({
-				adUnitId: this.adId,
-				npa: this.npa,
-			});
+		console.log("Preparing ad");
 
-			this.rewarded.on("load", adsContainer.events.Load);
-			this.rewarded.on("reward", adsContainer.events.GiveReward);
-			this.rewarded.on("showFail", adsContainer.events.ShowFailed);
-			this.rewarded.on("loadFail", adsContainer.events.LoadFailed);
+		this.rewarded = new admob.RewardedAd({
+			adUnitId: this.adId,
+			npa: this.npa,
+		});
 
-			this.LoadAd();
-		}
+		this.rewarded.on("load", adsContainer.events.Load);
+		this.rewarded.on("reward", adsContainer.events.GiveReward);
+		this.rewarded.on("showFail", adsContainer.events.ShowFailed);
+		this.rewarded.on("loadFail", adsContainer.events.LoadFailed);
+
+		this.LoadAd();
 	},
 	LoadAd: async function () {
 		if (this.rewarded !== undefined) {
+			console.log("Loading ad");
 			await this.rewarded.load();
 		} else {
 			this.PrepareAd();
