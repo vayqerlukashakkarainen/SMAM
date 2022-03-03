@@ -55,19 +55,20 @@ var adsContainer = {
 		}
 
 		if (this.consentStatus === 0) {
-			const consentStatus = await consent.getConsentStatus();
-			if (consentStatus === consent.ConsentStatus.Required) {
+			try {
 				await consent.requestInfoUpdate();
-			}
 
-			const formStatus = await consent.getFormStatus();
-			if (formStatus === consent.FormStatus.Available) {
-				this.form = await consent.loadForm();
-				this.form.show();
-			}
+				const formStatus = await consent.getFormStatus();
+				if (formStatus === consent.FormStatus.Available) {
+					this.form = await consent.loadForm();
+					this.form.show();
+				}
 
-			this.consentStatus = 1;
-			Save();
+				this.consentStatus = 1;
+				Save();
+			} catch (error) {
+				console.log(error);
+			}
 		}
 
 		this.PrepareAd();
@@ -76,12 +77,16 @@ var adsContainer = {
 		consent.reset();
 	},
 	LoadNewConsent: async function () {
-		await consent.requestInfoUpdate();
+		try {
+			await consent.requestInfoUpdate();
 
-		const formStatus = await consent.getFormStatus();
-		if (formStatus === consent.FormStatus.Available) {
-			this.form = await consent.loadForm();
-			this.form.show();
+			const formStatus = await consent.getFormStatus();
+			if (formStatus === consent.FormStatus.Available) {
+				this.form = await consent.loadForm();
+				this.form.show();
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	},
 	ShowRewardedAd: async function () {
