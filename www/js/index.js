@@ -48,7 +48,8 @@ function Save() {
 	save.initValueClaimed = popcornContainer.initValueClaimed;
 	save.popcornsUsed = popcornContainer.popcornsUsed;
 
-	save.ads.consentStatus = adsContainer.consentStatus ?? 0;
+	save.ads.consentStatus =
+		adsContainer.consentStatus === undefined ? 0 : adsContainer.consentStatus;
 
 	json = JSON.stringify(save);
 

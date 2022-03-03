@@ -192,9 +192,9 @@ img.loading {
 	padding: 0;
 }
 
-.app > div:not(.bottom-footer, .fetch-movie-btn-container) {
+.app > div:not(.bottom-footer),
+.app > div:not(.fetch-movie-btn-container) {
 	position: fixed;
-	top: 0;
 }
 .app.toggled > .toggle-container {
 	transform: translateY(0);
@@ -733,6 +733,7 @@ form > fieldset[data-buttons] {
 	-webkit-animation-iteration-count: infinite;
 	animation: scroll-content 300s linear;
 	animation-iteration-count: infinite;
+	will-change: transform;
 }
 .poster-scroll > ul li {
 	float: left;
