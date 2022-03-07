@@ -43,7 +43,7 @@ var save = {
 };
 function Save() {
 	// Set all data
-	save.savedPopcorns = popcornContainer.currentPopcorns;
+	save.savedPovaopcorns = popcornContainer.currentPopcorns;
 	save.unlockedTypes = popcornContainer.unlockedTypes;
 	save.initValueClaimed = popcornContainer.initValueClaimed;
 	save.popcornsUsed = popcornContainer.popcornsUsed;
@@ -798,9 +798,9 @@ function onDeviceReady() {
 			seriesResult.overview;
 		document.querySelector("#tmdb_rating > span.rating").textContent =
 			seriesResult.vote_average;
-		document.querySelector("#tmdb_year").textContent = new Date(
+		document.querySelector("#tmdb_year").textContent = `${new Date(
 			seriesResult.first_air_date
-		).getFullYear();
+		).getFullYear()} - ${new Date(seriesResult.last_air_date).getFullYear()}`;
 		document.querySelector("#tmdb_duration").textContent = `${
 			seriesResult.number_of_seasons
 		} season${seriesResult.number_of_seasons === 1 ? "" : "s"}`;
