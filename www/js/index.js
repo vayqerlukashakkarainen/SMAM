@@ -43,7 +43,7 @@ var save = {
 };
 function Save() {
 	// Set all data
-	save.savedPovaopcorns = popcornContainer.currentPopcorns;
+	save.savedPopcorns = popcornContainer.currentPopcorns;
 	save.unlockedTypes = popcornContainer.unlockedTypes;
 	save.initValueClaimed = popcornContainer.initValueClaimed;
 	save.popcornsUsed = popcornContainer.popcornsUsed;

@@ -116,6 +116,7 @@ var adsContainer = {
 		this.rewarded.on("reward", adsContainer.events.GiveReward);
 		this.rewarded.on("showFail", adsContainer.events.ShowFailed);
 		this.rewarded.on("loadFail", adsContainer.events.LoadFailed);
+		this.rewarded.on("dismiss", adsContainer.events.AdDismissed);
 
 		this.LoadAd();
 	},
@@ -130,6 +131,9 @@ var adsContainer = {
 	events: {
 		Load: async function (event) {
 			console.log("Ad loaded");
+		},
+		AdDismissed: async function (event) {
+			adsContainer.LoadAd();
 		},
 		GiveReward: async function (event) {
 			console.log("Giving award!");

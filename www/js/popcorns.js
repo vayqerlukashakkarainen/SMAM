@@ -47,6 +47,7 @@ var popcornContainer = {
 			this.initValueClaimed = settings.initValueClaimed;
 			this.unlockedTypes = settings.unlockedTypes;
 			this.AddPopcorns(settings.savedPopcorns, false, false);
+			this.popcornsUsed = settings.popcornsUsed;
 		}
 
 		this.unlockedTypes.forEach((type) => {
