@@ -111,10 +111,17 @@ var popcornContainer = {
 		}
 	},
 	GetRandomClaimText: function () {
-		var randomClaimTexts = ["Yum!", "POPCORNS!!", "Claim", "Oh, nice!"];
+		var texts = ["Yum!", "POPCORNS!!", "Claim", "Oh, nice!"];
 
-		return randomClaimTexts[
-			Math.floor(Math.random() * randomClaimTexts.length)
+		return texts[
+			Math.floor(Math.random() * texts.length)
+		];
+	},
+	GetRandomPraiseText: function () {
+		var texts = ["Nice job!", "Thank you!", "We are happy you are here.", "You are awesome!"];
+
+		return texts[
+			Math.floor(Math.random() * texts.length)
 		];
 	},
 
@@ -122,6 +129,7 @@ var popcornContainer = {
 		var claimValue = 0;
 		if (!this.initValueClaimed) {
 			claimValue = this.startupClaimValue;
+			document.querySelector(".app").classList.add("init");
 		} else {
 			claimValue = this.claimValues.RandomizeValue();
 		}
@@ -217,7 +225,7 @@ var popcornContainer = {
 					"The ad failed to load, but it's not your fault. So here is a reward anyway!";
 			} else {
 				document.querySelector("#get_reward_container p").textContent =
-					"Nice job! Thank you for supporting us. Here is your reward";
+					`${this.GetRandomPraiseText()} Thank you for supporting us. Here is your reward`;
 			}
 			document.querySelector("#get_reward_container").classList.remove("hide");
 			document.querySelector("#get_reward_container > div").insertAdjacentHTML(
@@ -274,6 +282,8 @@ var popcornContainer = {
 						0
 					);
 				}
+
+				document.querySelector(".app").classList.remove("init");
 
 				// Remove the claim btn
 				var claimTarget = el.dataset.claimTarget;

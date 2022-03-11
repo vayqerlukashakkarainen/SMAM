@@ -269,13 +269,13 @@ img.loading {
 }
 @keyframes glow {
 	0% {
-		transform: rotate(-3deg);
+		transform: rotate(-3deg) scale(1);
 		box-shadow: 0 0 60px 20px rgb(249, 219, 86, 0.4),
 			25px 15px 50px 10px rgb(255, 255, 255, 0.4),
 			-5px -25px 30px 5px rgb(255, 255, 255, 0.4);
 	}
 	100% {
-		transform: rotate(3deg);
+		transform: rotate(3deg) scale(1.1);
 		box-shadow: 0 0 90px 20px rgba(249, 219, 86, 0.4),
 			35px 20px 40px 10px rgb(255, 255, 255, 0.4),
 			-30px -30px 40px 5px rgb(255, 255, 255, 0.4);
@@ -283,13 +283,13 @@ img.loading {
 }
 @-webkit-keyframes glow {
 	0% {
-		-webkit-transform: rotate(-3deg);
+		-webkit-transform: rotate(-3deg) scale(1);
 		box-shadow: 0 0 60px 20px rgb(249, 219, 86, 0.4),
 			25px 15px 50px 10px rgb(255, 255, 255, 0.4),
 			-5px -25px 30px 5px rgb(255, 255, 255, 0.4);
 	}
 	100% {
-		-webkit-transform: rotate(3deg);
+		-webkit-transform: rotate(3deg) scale(1.1);
 		box-shadow: 0 0 90px 20px rgba(249, 219, 86, 0.4),
 			35px 20px 40px 10px rgb(255, 255, 255, 0.4),
 			-30px -30px 40px 5px rgb(255, 255, 255, 0.4);
@@ -342,6 +342,9 @@ img.loading {
 	color: white;
 	opacity: 0;
 	margin-top: 4px;
+}
+.app.init .fetch-btn-container {
+	display: none;
 }
 .fetch-btn-container {
 	display: flex;
