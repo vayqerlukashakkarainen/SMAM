@@ -845,6 +845,22 @@ function onDeviceReady() {
 					}
 				});
 			}
+			if (countryProvider.free !== undefined) {
+				countryProvider.free.forEach((provider) => {
+					if (!FilterOutProvider(provider.provider_name)) {
+						document
+							.querySelector("#stream_from .stream-providers")
+							.insertAdjacentHTML(
+								"beforeend",
+								`
+                        <div class="provider" data-id="${provider.provider_id}">
+                            <img src="${tmdbIconUrl}${provider.logo_path}"/>
+                            <p>${provider.provider_name}</p>
+                        </div>`
+							);
+					}
+				});
+			}
 			if (countryProvider.rent !== undefined) {
 				countryProvider.rent.forEach((provider) => {
 					if (!FilterOutProvider(provider.provider_name)) {
