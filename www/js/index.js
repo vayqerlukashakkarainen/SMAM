@@ -636,6 +636,9 @@ function onDeviceReady() {
 						);
 						break;
 				}
+			} else {
+				document.querySelector(".app").classList.remove("toggled");
+				document.querySelector(".movie-container").classList.remove("loading");
 			}
 		}
 	}
