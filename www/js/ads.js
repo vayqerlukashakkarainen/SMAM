@@ -1,11 +1,6 @@
 document.querySelector(".start-ad").addEventListener("click", function () {
 	adsContainer.ShowRewardedAd();
 });
-document
-	.querySelector("#update_consent_btn")
-	.addEventListener("click", function () {
-		adsContainer.LoadNewConsent();
-	});
 
 var adsContainer = {
 	npa: 0,

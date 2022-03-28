@@ -1023,4 +1023,17 @@ var languageContainer = {
 	FetchIso_639FromLocale: function (locale) {
 		return locale.split("-")[0];
 	},
+
+	Setup: function(deviceRegion) {
+		document.querySelector("#selected_region").textContent = "";
+
+		for (const [key, value] of Object.entries(this.isoCountries)) {
+			document.querySelector("#selected_region")
+			.insertAdjacentHTML(
+				"beforeend",
+				`
+				<option value="${key}" ${(deviceRegion === key ? "selected" : "")}>${value}</option>`
+			);
+		}
+	}
 };

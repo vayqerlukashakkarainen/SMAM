@@ -1065,18 +1065,21 @@ function onDeviceReady() {
 	var providerCurrentRegionIso = undefined;
 	function SetProviderForCurrentLanguage() {
 		var iso = languageContainer.FetchIso_3166_1FromLocale(region);
+		languageContainer.Setup(iso);
 
-		if (iso !== undefined && availableProviders !== undefined) {
+		if (iso !== undefined) {
 			document.querySelectorAll("span[data-insert-country]").forEach((el) => {
 				el.textContent = languageContainer.GetCountryName(iso);
 			});
 
-			availableProviders.forEach((provider) => {
-				if (provider.iso_3166_1.toLowerCase() === iso.toLowerCase()) {
-					providerCurrentRegionIso = iso;
-					return;
-				}
-			});
+			if (availableProviders !== undefined) {
+				availableProviders.forEach((provider) => {
+					if (provider.iso_3166_1.toLowerCase() === iso.toLowerCase()) {
+						providerCurrentRegionIso = iso;
+						return;
+					}
+				});
+			}
 		}
 	}
 	function FetchAvailableProviderRegions(onSuccess) {
@@ -1102,10 +1105,13 @@ function onDeviceReady() {
 			function (responseText) {
 				var obj = JSON.parse(responseText);
 
+				var providerContainer = document.querySelector(
+					`#filter_form fieldset[name="movie_providers"] > div.c-container`
+				);
+
+				providerContainer.textContent = "";
+
 				if (obj.results !== undefined) {
-					var providerContainer = document.querySelector(
-						`#filter_form fieldset[name="movie_providers"] > div.c-container`
-					);
 					obj.results.forEach((provider) => {
 						if (!FilterOutProvider(provider.provider_name)) {
 							providerContainer.insertAdjacentHTML(
@@ -1142,10 +1148,13 @@ function onDeviceReady() {
 			function (responseText) {
 				var obj = JSON.parse(responseText);
 
+				var providerContainer = document.querySelector(
+					`#filter_form fieldset[name="tv_providers"] > div.c-container`
+				);
+
+				providerContainer.textContent = "";
+
 				if (obj.results !== undefined) {
-					var providerContainer = document.querySelector(
-						`#filter_form fieldset[name="tv_providers"] > div.c-container`
-					);
 					obj.results.forEach((provider) => {
 						providerContainer.insertAdjacentHTML(
 							"beforeend",
