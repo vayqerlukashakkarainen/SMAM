@@ -255,6 +255,14 @@ function onDeviceReady() {
 		});
 	});
 
+	document.querySelectorAll("fieldset.collapsable input").forEach((el) => {
+		el.addEventListener("click", function (event) {
+			var parent = el.closest("fieldset");
+
+			CheckIfCollapsableGotSelectedChildren(parent);
+			FetchPotentialResults();
+		});
+	});
 	document.querySelectorAll(".clear-input").forEach((el) => {
 		el.addEventListener("click", function (event) {
 			event.preventDefault();
@@ -1179,12 +1187,17 @@ function onDeviceReady() {
 	}
 
 	function CheckIfCollapsableGotSelectedChildren(collapseParent) {
+		var clearBtn = collapseParent.querySelector("button");
 		if (collapseParent.querySelectorAll("input:checked").length > 0) {
 			collapseParent.classList.add("got-selected");
-			collapseParent.querySelector("button").classList.remove("hide");
+			if (clearBtn !== null) {
+				collapseParent.querySelector("button").classList.remove("hide");
+			}
 		} else {
 			collapseParent.classList.remove("got-selected");
-			collapseParent.querySelector("button").classList.add("hide");
+			if (clearBtn !== null) {
+				collapseParent.querySelector("button").classList.add("hide");
+			}
 		}
 	}
 
@@ -1275,6 +1288,14 @@ function onDeviceReady() {
 		}
 
 		function GetMaxVotesFromOriginalLanguages() {
+			if (
+				document.querySelector(
+					`#filter_form input[name="explorer_cb"]:checked`
+				) !== null
+			) {
+				return 0;
+			}
+
 			var fallbackMaxVotes = 300;
 			var maxVotesSelected = 0;
 

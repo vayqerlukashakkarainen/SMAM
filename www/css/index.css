@@ -153,6 +153,14 @@ img.loading {
 	display: block;
 }
 
+.collapsable {
+	max-height: 1000px;
+	transition: max-height 500ms ease;
+	-webkit-transition: max-height 500ms ease;
+}
+.collapsable.collapsed {
+	max-height: 90px;
+}
 .collapsable * {
 	transition: all 200ms ease;
 	-webkit-transition: all 200ms ease;
@@ -468,6 +476,9 @@ form > fieldset[data-slider] {
 }
 form > fieldset[data-buttons] {
 	padding-bottom: 24px;
+}
+form > fieldset[data-buttons].collapsable.collapsed {
+	padding-bottom: 0px;
 }
 
 .icon {
