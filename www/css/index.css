@@ -1136,7 +1136,7 @@ form > fieldset[data-buttons].collapsable.collapsed {
 .controls-container {
 	display: flex;
 	justify-content: space-around;
-	align-items: flex-start;
+	align-items: flex-end;
 	padding: 0.6rem;
 	padding-bottom: 0;
 }
