@@ -75,7 +75,7 @@ var resultStorageContainer = {
 		var updatedRating = false;
 		for (const o of this.data.ratedResults) {
 			if (o.id === result.id) {
-				this.data.ratedResults.rating = rating;
+				o.rating = rating;
 				updatedRating = true;
 				break;
 			}
