@@ -91,36 +91,44 @@ var mediaContainer = {
 	prevMedia: undefined,
 	PlayAudio: function (audio, saveMedia = false) {
 		// Play the audio file at url
-		if (Media !== undefined) {
-			if (audio.interval === undefined) {
-				var my_media = new Media(
-					audio.url,
-					// success callback
-					function () {
-						my_media.release();
-					},
-					// error callback
-					function (err) {
-						console.log("playAudio():Audio Error: " + err.code);
+		try {
+			if (Media !== undefined) {
+				if (audio.interval === undefined) {
+					var my_media = new Media(
+						audio.url,
+						// success callback
+						function () {
+							my_media.release();
+						},
+						// error callback
+						function (err) {
+							console.log("playAudio():Audio Error: " + err.code);
+						}
+					);
+					// Play audio
+					my_media.setVolume(audio.volume);
+					my_media.play();
+
+					if (saveMedia) {
+						this.prevMedia = my_media;
 					}
-				);
-				// Play audio
-				my_media.setVolume(audio.volume);
-				my_media.play();
 
-				if (saveMedia) {
-					this.prevMedia = my_media;
+					audio.interval = setTimeout(function () {
+						clearTimeout(audio.interval);
+						audio.interval = undefined;
+					}, audio.maxInterval);
 				}
-
-				audio.interval = setTimeout(function () {
-					clearTimeout(audio.interval);
-					audio.interval = undefined;
-				}, audio.maxInterval);
 			}
+		} catch (error) {
+			console.error(error);
 		}
 	},
 	PlayRepeatedMedia: function (audio) {
-		this.repeatedMedia.SetMedias(audio);
+		try {
+			this.repeatedMedia.SetMedias(audio);
+		} catch (error) {
+			console.error(error);
+		}
 	},
 	StopAllMedia: function () {
 		this.StopRepeatedMedia();

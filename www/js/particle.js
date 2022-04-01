@@ -620,8 +620,14 @@ var pJS = function (tag_id, params) {
 				)
 			);
 		}
+
+		if (pJS.particles.array.length > 0) {
+			pJS.fn.vendors.draw();
+		}
 	};
 	pJS.fn.particlesCreate = function (amount, x, y, lifetime) {
+		var initDraw = amount > 0 && pJS.particles.array.length === 0;
+
 		for (var i = 0; i < amount; i++) {
 			pJS.particles.array.push(
 				new pJS.fn.particle(
@@ -635,6 +641,10 @@ var pJS = function (tag_id, params) {
 					lifetime
 				)
 			);
+		}
+
+		if (initDraw) {
+			pJS.fn.vendors.draw();
 		}
 	};
 
@@ -659,8 +669,8 @@ var pJS = function (tag_id, params) {
 					var maxMs = pJS.particles.move.physicsEngine.maxSpeed;
 					var gravity = pJS.particles.move.physicsEngine.gravity / 2;
 					var acceleration = pJS.particles.move.physicsEngine.acceleration;
-					var axis = radiansToAxis(
-						angleInRadians(
+					var axis = helpContainer.RadiansToAxis(
+						helpContainer.AngleInRadians(
 							{ x: p.x, y: p.y },
 							pJS.particles.move.physicsEngine.dragToPoint
 						)
@@ -678,7 +688,10 @@ var pJS = function (tag_id, params) {
 					var gravityForce = (p.weight * gravity + p.velocity.y) * acceleration;
 
 					// Y
-					p.velocity.y = round(gravityForce + attractionForceY, 3);
+					p.velocity.y = helpContainer.Round(
+						gravityForce + attractionForceY,
+						3
+					);
 					if (Math.abs(p.velocity.y) > maxMs) {
 						p.velocity.y = p.velocity.y > 0 ? maxMs : -maxMs;
 					}
@@ -691,7 +704,7 @@ var pJS = function (tag_id, params) {
 					var airForce = p.velocity.x * 0.99;
 					var attractionForceX = dragToPoint ? axis.x * (p.weight * force) : 0;
 
-					p.velocity.x = round(airForce + attractionForceX, 3);
+					p.velocity.x = helpContainer.Round(airForce + attractionForceX, 3);
 					if (Math.abs(p.velocity.x) > maxMs) {
 						p.velocity.x = p.velocity.x > 0 ? maxMs : -maxMs;
 					} else {
@@ -1562,6 +1575,11 @@ var pJS = function (tag_id, params) {
 	};
 
 	pJS.fn.vendors.draw = function () {
+		if (pJS.particles.array.length === 0) {
+			cancelRequestAnimFrame(pJS.fn.drawAnimFrame);
+			return;
+		}
+
 		if (pJS.particles.shape.type == "image") {
 			if (pJS.tmp.img_type == "svg") {
 				if (pJS.tmp.count_svg >= pJS.particles.number.value) {

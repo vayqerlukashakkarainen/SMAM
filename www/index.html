@@ -30,7 +30,7 @@
         -->
 		<meta
 			http-equiv="Content-Security-Policy"
-			content="script-src 'self'; default-src http://api.themoviedb.org 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src https://www.google.com/ https://www.themoviedb.org https://image.tmdb.org 'self' data: content:;" />
+			content="script-src 'self'; default-src http://api.themoviedb.org https://www.themoviedb.org/ 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src https://www.google.com/ https://www.themoviedb.org https://image.tmdb.org 'self' data: content:;" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="msapplication-tap-highlight" content="no" />
 		<meta
@@ -60,11 +60,11 @@
 				</div>
 			</div>
 			<div
+				data-target-modal="#popcorns_container"
 				id="popcorn_current_value_holder"
-				class="popcorn-current-value-container safe-area">
-				<span class="popcorn container f-size-12">0</span>
+				class="popcorn-current-value-container design safe-area">
+				<span class="popcorn p-container f-size-12">0</span>
 			</div>
-
 			<div class="poster-scroll loading">
 				<div class="intro">
 					<div>
@@ -96,7 +96,20 @@
 								<li id="tmdb_year">2021</li>
 								<li id="tmdb_duration">2 Seasons</li>
 							</ul>
-							<ul id="tmdb_categories" class="horizontal-list categories">
+							<div class="controls-container">
+								<div data-target-modal="#rate_container" class="rating item">
+									<img src="./img/stars/star_empty_64.png" />
+									<h3>
+										<span class="text">Rate</span
+										><span class="color-red rating"></span>
+									</h3>
+								</div>
+								<div class="bookmark item">
+									<img src="./img/hearts/heart_64.png" />
+									<h3>Save</h3>
+								</div>
+							</div>
+							<ul id="tmdb_categories" class="horizontal-list categories pt-0">
 								<li>Action</li>
 								<li>Family</li>
 								<li>Adventure</li>
@@ -133,6 +146,12 @@
 									class="color-gray text-center f-size-12 hideable hide">
 									Providers powered by JustWatch
 								</p>
+								<div class="controls-container">
+									<div class="tmdb item filled">
+										<img src="./img/tmdb.svg" />
+										<h3>Read more on tMDB</h3>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="cb-error-container">
@@ -143,6 +162,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="bottom-footer">
 				<div class="fetch-btn-container w-100 dark-gradient">
 					<button class="show-me-a-movie-btn fetch-film" data-popcorn-cost="50">
@@ -177,15 +197,28 @@
 			</div>
 
 			<div class="toggle-container">
-				<div class="p-1 pt-5">
-					<div class="tab-links pb-3 safe-area">
-						<h3 class="active" data-tab-group="filter" data-tab-target="filter">
+				<div>
+					<div class="tab-links horizontal pb-3 safe-area">
+						<h3
+							class="active color-gold"
+							data-tab-group="filter"
+							data-tab-target="filter">
 							FILTER
 						</h3>
-						<!-- <h3 data-tab-group="filter" data-tab-target="settings">SAVED</h3> -->
-						<!-- <h3 data-tab-group="filter" data-tab-target="settings">HISTORY</h3> -->
+						<h3
+							class="icon heart-icon"
+							data-tab-group="filter"
+							data-tab-target="saved"></h3>
+						<h3
+							class="icon star-icon"
+							data-tab-group="filter"
+							data-tab-target="rated"></h3>
+						<h3
+							class="icon history-icon"
+							data-tab-group="filter"
+							data-tab-target="history"></h3>
 						<!-- <h3 data-tab-group="filter" data-tab-target="settings">STATS</h3> -->
-						<h3 data-tab-group="filter" data-tab-target="settings">SETTINGS</h3>
+						<!-- <h3 data-tab-group="filter" data-tab-target="settings">SETTINGS</h3> -->
 					</div>
 
 					<div class="tab active" data-tab-group="filter" data-tab-id="filter">
@@ -317,6 +350,18 @@
 							</fieldset>
 						</form>
 					</div>
+					<div class="tab" data-tab-group="filter" data-tab-id="history">
+						<h3>Recent results</h3>
+						<ul id="history_list" class="result-list"></ul>
+					</div>
+					<div class="tab" data-tab-group="filter" data-tab-id="rated">
+						<h3>Rated</h3>
+						<ul id="rated_list" class="result-list"></ul>
+					</div>
+					<div class="tab" data-tab-group="filter" data-tab-id="saved">
+						<h3>Saved</h3>
+						<ul id="saved_list" class="result-list"></ul>
+					</div>
 					<div class="tab" data-tab-group="filter" data-tab-id="settings">
 						<h4>Consent</h4>
 						<p>Manage the ads preferences</p>
@@ -394,15 +439,60 @@
 					<button class="close-modal design pt-2">Close</button>
 				</div>
 			</div>
+			<div id="rate_container" class="modal-container rate-modal hideable hide">
+				<div class="page-container">
+					<div class="rating-container hideable">
+						<h1 class="f-bold">
+							Enter your <span class="color-gold">rating</span>
+						</h1>
+						<br />
+						<form id="rating_form" class="py-5 w-100">
+							<fieldset>
+								<div id="rating_input" class="noUi-gold mx-2"></div>
+							</fieldset>
+						</form>
+						<p class="rating-dialog">
+							<span class="color-gold rating">10 ★</span> -
+							<span class="text">I've seen better...</span>
+						</p>
+						<br />
+						<button class="show-me-a-movie-btn ignore rate-movie">
+							<span>SUBMIT</span>
+						</button>
+						<br />
+						<button class="close-modal design pt-2">Close</button>
+					</div>
+					<div class="rated-container hideable hide">
+						<h1 class="f-bold color-gold">Thank you for rating!</h1>
+						<p class="py-2">By rating you are providing for better results</p>
+						<button class="close-modal design pt-2">Close</button>
+					</div>
+				</div>
+			</div>
+
+			<div id="popcorns_container" class="modal-container hideable hide">
+				<div>
+					<h1 class="f-bold">Collected popcorns!</h1>
+					<br />
+					<div class="popcorn-current-value-container design">
+						<span class="popcorn large">0</span>
+					</div>
+					<br />
+					<button class="close-modal design pt-2">Close</button>
+				</div>
+			</div>
 		</div>
 		<script src="cordova.js"></script>
+		<script src="js/helper.js"></script>
+		<script src="js/film.js"></script>
 		<script src="js/themoviedb.js"></script>
-		<script src="js/country_codes.js"></script>
+		<script src="js/countryCodes.js"></script>
 		<script src="js/popcorns.js"></script>
 		<script src="js/particle.js"></script>
 		<script src="js/ads.js"></script>
 		<script src="js/media.js"></script>
 		<script src="js/csi.js"></script>
+		<script src="js/resultsStorage.js"></script>
 		<script src="js/index.js"></script>
 	</body>
 </html>
