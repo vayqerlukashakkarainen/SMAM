@@ -72,9 +72,24 @@ var popcornContainer = {
 			this.previousCost = cost;
 			this.popcornsUsed += cost;
 
-			document.querySelector(
-				"#popcorn_current_value_holder > span.popcorn"
-			).textContent = this.currentPopcorns;
+			setTimeout(function () {
+				var el = document.querySelector(
+					"#popcorn_current_value_holder > span.popcorn"
+				);
+				var rect = el.getBoundingClientRect();
+
+				pJSDom[0].pJS.fn.add(
+					Math.floor(cost / 10),
+					rect.x + rect.width / 2,
+					rect.y + rect.height / 2,
+					160
+				);
+				el.style.animation = null;
+				el.focus();
+				el.style.animation = "pulse 200ms ease";
+			}, 200);
+
+			this.UpdatePopcornValueHolders();
 
 			this.ScanIfElementsIsLocked();
 
@@ -96,7 +111,8 @@ var popcornContainer = {
 		var el = document.querySelector(
 			"#popcorn_current_value_holder > span.popcorn"
 		);
-		el.textContent = this.currentPopcorns;
+
+		this.UpdatePopcornValueHolders();
 		el.style.animation = null;
 		el.focus();
 		el.style.animation = "pulse 100ms ease";
@@ -110,19 +126,27 @@ var popcornContainer = {
 			this.ScanIfElementsIsLocked();
 		}
 	},
+	UpdatePopcornValueHolders: function () {
+		document
+			.querySelectorAll(".popcorn-current-value-container > span.popcorn")
+			.forEach((el) => {
+				el.textContent = this.currentPopcorns;
+			});
+	},
 	GetRandomClaimText: function () {
 		var texts = ["Yum!", "POPCORNS!!", "Claim", "Oh, nice!"];
 
-		return texts[
-			Math.floor(Math.random() * texts.length)
-		];
+		return texts[Math.floor(Math.random() * texts.length)];
 	},
 	GetRandomPraiseText: function () {
-		var texts = ["Nice job!", "Thank you!", "We are happy you are here.", "You are awesome!"];
-
-		return texts[
-			Math.floor(Math.random() * texts.length)
+		var texts = [
+			"Nice job!",
+			"Thank you!",
+			"We are happy you are here.",
+			"You are awesome!",
 		];
+
+		return texts[Math.floor(Math.random() * texts.length)];
 	},
 
 	RandomizeClaimOnStartup: function () {
@@ -224,8 +248,9 @@ var popcornContainer = {
 				document.querySelector("#get_reward_container p").textContent =
 					"The ad failed to load, but it's not your fault. So here is a reward anyway!";
 			} else {
-				document.querySelector("#get_reward_container p").textContent =
-					`${this.GetRandomPraiseText()} Thank you for supporting us. Here is your reward`;
+				document.querySelector(
+					"#get_reward_container p"
+				).textContent = `${this.GetRandomPraiseText()} Thank you for supporting us. Here is your reward`;
 			}
 			document.querySelector("#get_reward_container").classList.remove("hide");
 			document.querySelector("#get_reward_container > div").insertAdjacentHTML(

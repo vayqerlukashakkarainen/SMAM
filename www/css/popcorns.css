@@ -1,6 +1,6 @@
-.popcorn-current-value-container {
+.popcorn-current-value-container.design {
 	position: relative;
-	padding: var(--safe-area-distance);
+	margin: var(--safe-area-distance);
 	left: 0;
 	z-index: 3;
 }
@@ -8,7 +8,7 @@
 	font-family: Open-Sans;
 	font-weight: bold;
 	font-size: inherit;
-	color: gold;
+	color: #ffd700;
 	position: relative;
 	display: inline-flex;
 	align-items: center;
@@ -16,10 +16,13 @@
 .popcorn.neutral {
 	color: white;
 }
-.popcorn.container {
-	background-color: rgba(100, 100, 100, 0.6);
+.popcorn.p-container {
+	background-color: rgba(97, 97, 0, 0.6);
 	padding: 4px 8px;
 	border-radius: 4px;
+}
+.popcorn.large {
+	font-size: 32px;
 }
 .popcorn::after {
 	content: " ";
@@ -168,7 +171,7 @@
 .reward {
 	width: 32px;
 	height: 32px;
-	background-image: url("../img/heart_icon.png");
+	background-image: url("../img/hearts/heart_filled_red_64.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;

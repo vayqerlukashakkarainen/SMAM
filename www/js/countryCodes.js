@@ -1000,6 +1000,44 @@ var languageContainer = {
 		},
 	},
 
+	supportedOriginalLanguages: [
+		{
+			language: "English",
+			iso_639_1: "en",
+			maxVotes: 300,
+		},
+		{
+			language: "Spanish",
+			iso_639_1: "es",
+			maxVotes: 100,
+		},
+		{
+			language: "Mandarin",
+			iso_639_1: "zh",
+			maxVotes: 50,
+		},
+		{
+			language: "French",
+			iso_639_1: "fr",
+			maxVotes: 100,
+		},
+		{
+			language: "Arabic",
+			iso_639_1: "ar",
+			maxVotes: 10,
+		},
+		{
+			language: "Russian",
+			iso_639_1: "ru",
+			maxVotes: 50,
+		},
+		{
+			language: "Indonesian",
+			iso_639_1: "id",
+			maxVotes: 10,
+		},
+	],
+
 	GetCountryName: function (countryCode) {
 		var cc = countryCode.toUpperCase();
 		if (this.isoCountries.hasOwnProperty(cc)) {
