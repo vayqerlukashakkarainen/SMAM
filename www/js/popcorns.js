@@ -58,11 +58,32 @@ var popcornContainer = {
 				});
 		});
 
+		var popInfoEl = document.querySelector("#popcorn_info_container p.text");
+		popInfoEl.textContent = "";
+		if (!proVersion) {
+			popInfoEl.insertAdjacentHTML(
+				"beforeend",
+				`Use <span class="popcorn">popcorns</span> to get results and unlock
+			 better filtering. No payment required! Get more popcorn by watching
+			 ads or by just using the app. 
+			 <p class="f-bold">If you rather want to use the app <span class="color-gold">without ads,</span> there is a pro version available.</p>`
+			);
+		} else {
+			popInfoEl.insertAdjacentHTML(
+				"beforeend",
+				`Thank you for using the <span class="color-gold">PRO version</span> of <span class="f-bold">Show Me a Movie!</span> The popcorns are only here to be collected. How many can you collect?`
+			);
+		}
+
 		this.ScanIfElementsIsLocked();
 		this.RandomizeClaimOnStartup();
 	},
 
 	UsePopcorns: function (cost) {
+		if (proVersion) {
+			return true;
+		}
+
 		if (typeof cost !== types.number) {
 			cost = parseInt(cost);
 		}
@@ -100,6 +121,10 @@ var popcornContainer = {
 		return false;
 	},
 	GotEnoughPopcorns: function (cost) {
+		if (proVersion) {
+			return true;
+		}
+
 		if (typeof cost !== types.number) {
 			cost = parseInt(cost);
 		}
@@ -168,7 +193,9 @@ var popcornContainer = {
                     ${
 											this.initValueClaimed
 												? this.GetRandomClaimText()
-												: "Get started"
+												: !proVersion
+												? "Get started"
+												: "Popcorns are fun!!"
 										} <span class="popcorn" data-value="${claimValue}">${claimValue}</span>
                 </button>`
 			);
@@ -206,31 +233,33 @@ var popcornContainer = {
 	},
 
 	ScanIfElementsIsLocked: function () {
-		document.querySelectorAll("*[data-popcorn-cost]").forEach((el) => {
-			var cost = parseInt(el.dataset.popcornCost);
-			var unlockable = el.dataset.popcornUnlocked !== undefined;
-			if (cost > this.currentPopcorns || unlockable) {
-				if (el.querySelector(".pop-lock") === null) {
-					if (el.dataset.popcornUnlocked !== "1") {
-						el.insertAdjacentHTML(
-							"afterbegin",
-							`
-							<div class="pop-lock">
-								<span class="popcorn neutral">Click to unlock${
-									unlockable ? ` for ${cost}` : ""
-								}</span>
-							</div>`
-						);
+		if (!proVersion) {
+			document.querySelectorAll("*[data-popcorn-cost]").forEach((el) => {
+				var cost = parseInt(el.dataset.popcornCost);
+				var unlockable = el.dataset.popcornUnlocked !== undefined;
+				if (cost > this.currentPopcorns || unlockable) {
+					if (el.querySelector(".pop-lock") === null) {
+						if (el.dataset.popcornUnlocked !== "1") {
+							el.insertAdjacentHTML(
+								"afterbegin",
+								`
+								<div class="pop-lock">
+									<span class="popcorn neutral">Click to unlock${
+										unlockable ? ` for ${cost}` : ""
+									}</span>
+								</div>`
+							);
+						}
+					}
+				} else {
+					if (el.dataset.popcornUnlocked === undefined) {
+						this.RemovePopLock(el);
 					}
 				}
-			} else {
-				if (el.dataset.popcornUnlocked === undefined) {
-					this.RemovePopLock(el);
-				}
-			}
-		});
+			});
 
-		this.AddLockEvents();
+			this.AddLockEvents();
+		}
 	},
 
 	RemovePopLock: function (parentEl) {
