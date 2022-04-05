@@ -25,6 +25,8 @@ var language = "en-US";
 var opacityAccelerator = 400;
 var scaleAccelerator = 800;
 
+var proVersion = false;
+
 window.onanimationiteration = console.log;
 
 var save = {
@@ -125,8 +127,10 @@ function onDeviceReady() {
 	}
 
 	Load();
+	if (!proVersion) {
+		adsContainer.Setup(save);
+	}
 	mediaContainer.Setup();
-	adsContainer.Setup(save);
 	popcornContainer.Setup(save);
 	resultStorageContainer.Setup();
 	elementContainer.Setup();
@@ -267,6 +271,16 @@ function onDeviceReady() {
 			.forEach((input) => {
 				input.addEventListener("change", elementContainer.ToggleFormDisplay);
 			});
+
+		if (proVersion) {
+			document.querySelectorAll(".pro").forEach((el) => {
+				el.textContent = " PRO";
+			});
+		} else {
+			document.querySelectorAll(".no-pro").forEach((el) => {
+				el.classList.remove("hide");
+			});
+		}
 	}
 
 	function LoadOriginalLanguages() {
