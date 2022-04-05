@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.vayqer.movieapp" version="1.1.2" xmlns:android="http://schemas.android.com/apk/res/android" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.vayqer.movieapp.pro" version="1.0.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ShowMeAMovie</name>
-    <description>An app where you randmoize series or movies to watch next</description>
+    <description>Find movie and series recommendation and randomizer app</description>
     <author email="lukas@vayqer.se" href="https://www.vayqer.se">
         Vayqer AB
     </author>
