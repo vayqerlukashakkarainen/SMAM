@@ -25,7 +25,7 @@ var language = "en-US";
 var opacityAccelerator = 400;
 var scaleAccelerator = 800;
 
-var proVersion = false;
+var proVersion = true;
 
 window.onanimationiteration = console.log;
 
