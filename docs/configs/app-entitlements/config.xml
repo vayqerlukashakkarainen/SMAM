@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="app-entitlements" version="0.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+  <name>AppEntitlements</name>
+  <platform name="ios">
+    <config-file target="*-Debug.plist" parent="com.apple.runningboard.assertions.webkit">
+      <array>
+        <string>YOUR DEBUG MERCHANT ID HERE</string>
+      </array>
+    </config-file>
+    <config-file target="*-Release.plist" parent="com.apple.runningboard.assertions.webkit">
+      <array>
+        <string>YOUR RELEASE MERCHANT ID HERE</string>
+      </array>
+    </config-file>
+  </platform>
+</plugin>
