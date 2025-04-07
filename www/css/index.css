@@ -42,7 +42,7 @@
 
 html,
 body {
-	height: 100vh;
+	height: 100dvh;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
@@ -291,7 +291,7 @@ img.loading {
 	-webkit-transform: translateY(100%);
 	transition: transform ease 200ms, background-color ease 200ms;
 	-webkit-transition: transform ease 200ms;
-	max-height: 100vh;
+	max-height: 100dvh;
 	z-index: 2;
 }
 .toggle-container > div {
@@ -621,7 +621,7 @@ form > fieldset[data-buttons].collapsable.collapsed {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 100vh;
+	min-height: 100dvh;
 }
 .bottom-footer {
 	position: fixed;
@@ -817,14 +817,14 @@ form > fieldset[data-buttons].collapsable.collapsed {
 	float: left;
 }
 .poster-scroll img {
-	height: 100vh;
+	height: 100dvh;
 	object-fit: cover;
 	border-right: 1px solid white;
 }
 .poster-scroll > .intro {
 	position: absolute;
 	display: flex;
-	height: 100vh;
+	height: 100dvh;
 }
 .poster-scroll > .intro > div {
 	margin: auto;
@@ -870,7 +870,7 @@ form > fieldset[data-buttons].collapsable.collapsed {
 .movie-grid-container {
 	display: grid;
 	overflow-y: auto;
-	max-height: 100vh;
+	max-height: 100dvh;
 	-ms-overflow-style: none; /* Internet Explorer 10+ */
 	scrollbar-width: none; /* Firefox */
 }
@@ -1072,7 +1072,7 @@ form > fieldset[data-buttons].collapsable.collapsed {
 	z-index: 10;
 }
 .modal-container.hideable {
-	max-height: 100vh;
+	max-height: 100dvh;
 }
 .modal-container > div {
 	margin: auto;
